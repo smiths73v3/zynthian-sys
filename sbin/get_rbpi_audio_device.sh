@@ -11,3 +11,6 @@ if [ "$res" != "" ]; then
         echo -n "ALSA"
         exit
 fi
+#Nothing found, default to ALSA
+echo -n "ALSA"  
+exit

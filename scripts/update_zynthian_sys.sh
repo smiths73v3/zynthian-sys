@@ -199,6 +199,8 @@ if [ ${MACHINE_HW_NAME} = "armv7l" ]; then
 	arch_libdir="arm-linux-gnueabih"
 elif [ ${MACHINE_HW_NAME} = "aarch64" ]; then
 	arch_libdir="aarch64-linux-gnu"
+elif [ ${MACHINE_HW_NAME} = "x86_64" ]; then
+	arch_libdir="x86_64-linux-gnu"
 fi
 LV2_PATH="/usr/lib/lv2:/usr/lib/$arch_libdir/lv2:/usr/local/lib/lv2:/usr/local/lib/$arch_libdir/lv2:$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_DATA_DIR/presets/lv2:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 LV2_PATH_ESC=${LV2_PATH//\//\\\/}
@@ -378,7 +380,9 @@ if [ ! -d "$BROWSEPY_ROOT" ]; then
 fi
 
 # Fix Aeolus config file: Remove unsupported "-J" option.
-sed -i -e "s/ \-J / /g" /etc/aeolus.conf
+if [ -f /etc/aeolus.conf ]; then
+	sed -i -e "s/ \-J / /g" /etc/aeolus.conf
+fi
 
 # Migrate legacy touch-navigation flag (to remove!!)
 if [ -z "$ZYNTHIAN_UI_TOUCH_NAVIGATION" ]; then

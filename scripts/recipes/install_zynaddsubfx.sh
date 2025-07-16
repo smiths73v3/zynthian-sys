@@ -6,7 +6,11 @@
 #unset LV2_PATH
 
 if [[ ${MACHINE_HW_NAME} =~ [armv7l] ]]; then
-	export CFLAGS="-mfpu=neon-vfpv4 -mfloat-abi=hard -mvectorize-with-neon-quad"
+	if [ ${MACHINE_HW_NAME} = "x86_64" ]; then
+		export CFLAGS=""
+	else
+		export CFLAGS="-mfpu=neon-vfpv4 -mfloat-abi=hard -mvectorize-with-neon-quad"
+	fi
 	export CXXFLAGS=$CFLAGS
 fi
 

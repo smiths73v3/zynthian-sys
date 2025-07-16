@@ -22,6 +22,6 @@ cp -r src/Os251_artefacts/LV2/OS-251.lv2 /zynthian/zynthian-plugins/lv2/
 
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 rm -rf OS-251
-apt -y remove npm
-apt -y autoremove
+#-#apt -y remove npm
+#-#apt -y autoremove
 apt clean

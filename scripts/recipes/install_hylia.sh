@@ -7,6 +7,8 @@ if [ ${MACHINE_HW_NAME} = "armv7l" ]; then
 	export CFLAGS="-mfpu=neon-fp-armv8 -mneon-for-64bits -mfloat-abi=hard -mvectorize-with-neon-quad"
 elif [ ${MACHINE_HW_NAME} = "aarch64" ]; then
 	export CFLAGS="-mcpu=cortex-a72 -mtune=cortex-a72"
+elif [ ${MACHINE_HW_NAME} = "x86_64" ]; then
+	export CFLAGS=""
 fi
 export CXXFLAGS=$CFLAGS
 export NOOPT=true

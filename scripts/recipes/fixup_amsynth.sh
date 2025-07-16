@@ -4,6 +4,8 @@ if [ ${MACHINE_HW_NAME} = "armv7l" ]; then
 	cd /usr/lib/arm-linux-gnueabihf/lv2/amsynth.lv2
 elif [ ${MACHINE_HW_NAME} = "aarch64" ]; then
 	cd /usr/lib/aarch64-linux-gnu/lv2/amsynth.lv2
+elif [ ${MACHINE_HW_NAME} = "x86_64" ]; then
+	cd /usr/lib/x86_64-linux-gnu/lv2/amsynth.lv2
 fi
 
 # Fix banks
