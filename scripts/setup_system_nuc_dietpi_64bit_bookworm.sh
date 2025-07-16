@@ -46,14 +46,14 @@ source "zynthian_envars_extended.sh"
 [ -n "$ZYNTHIAN_INCLUDE_PIP" ] || ZYNTHIAN_INCLUDE_PIP=yes
 [ -n "$ZYNTHIAN_CHANGE_HOSTNAME" ] || ZYNTHIAN_CHANGE_HOSTNAME=yes
 
-[ -n "$ZYNTHIAN_SYS_REPO" ] || ZYNTHIAN_SYS_REPO="https://github.com/zynthian/zynthian-sys.git"
+[ -n "$ZYNTHIAN_SYS_REPO" ] || ZYNTHIAN_SYS_REPO="https://github.com/smiths73v3/zynthian-sys.git"
 [ -n "$ZYNTHIAN_UI_REPO" ] || ZYNTHIAN_UI_REPO="https://github.com/zynthian/zynthian-ui.git"
 [ -n "$ZYNTHIAN_ZYNCODER_REPO" ] || ZYNTHIAN_ZYNCODER_REPO="https://github.com/zynthian/zyncoder.git"
 [ -n "$ZYNTHIAN_WEBCONF_REPO" ] || ZYNTHIAN_WEBCONF_REPO="https://github.com/zynthian/zynthian-webconf.git"
 [ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthian/zynthian-data.git"
 
 [ -n "$ZYNTHIAN_BRANCH" ] || ZYNTHIAN_BRANCH="oram"
-[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="oram"
+[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="NUC"
 [ -n "$ZYNTHIAN_UI_BRANCH" ] || ZYNTHIAN_UI_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_ZYNCODER_BRANCH" ] || ZYNTHIAN_ZYNCODER_BRANCH=$ZYNTHIAN_BRANCH
 [ -n "$ZYNTHIAN_WEBCONF_BRANCH" ] || ZYNTHIAN_WEBCONF_BRANCH=$ZYNTHIAN_BRANCH
@@ -68,10 +68,11 @@ apt-get -y update --allow-releaseinfo-change
 apt-get -y full-upgrade
 
 # Install required dependencies if needed
-apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common parted dirmngr rpi-eeprom gpgv wget
+apt-get -y install apt-utils apt-transport-https sudo software-properties-common parted dirmngr rpi-eeprom gpgv wget
 
 # Update Firmware
 if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
+    apt-get -y install rpi-update
     rpi-update
 fi
 
@@ -187,9 +188,9 @@ git clone -b "${ZYNTHIAN_SYS_BRANCH}" "${ZYNTHIAN_SYS_REPO}"
 #git config --global pull.rebase false
 
 # Zyncoder library
-cd "$ZYNTHIAN_DIR"
-git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
-./zyncoder/build.sh
+#-#cd "$ZYNTHIAN_DIR"
+#-#git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
+#-#./zyncoder/build.sh
 
 # Zynthian UI
 cd "$ZYNTHIAN_DIR"
@@ -304,9 +305,9 @@ echo $ZYNTHIANOS_VERSION > /etc/zynthianos_version
 # Build Info
 echo "ZynthianOS ORAM-$ZYNTHIANOS_VERSION" > $ZYNTHIAN_DIR/build_info.txt
 echo "" >> $ZYNTHIAN_DIR/build_info.txt
-echo "Timestamp: 2024-09-06"  >> $ZYNTHIAN_DIR/build_info.txt
+echo "Timestamp: 2025-07-16"  >> $ZYNTHIAN_DIR/build_info.txt
 echo "" >> $ZYNTHIAN_DIR/build_info.txt
-echo "Built from RaspberryPiOS Bookworm ($MACHINE_HW_NAME)" >> $ZYNTHIAN_DIR/build_info.txt
+echo "Built from DietPi Bookworm ($MACHINE_HW_NAME)" >> $ZYNTHIAN_DIR/build_info.txt
 
 # Run configuration script
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
@@ -318,7 +319,7 @@ $ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py
 
 # Configure systemd services
 systemctl daemon-reload
-systemctl disable raspi-config
+#-#systemctl disable raspi-config
 systemctl disable cron
 systemctl disable dnsmasq
 systemctl disable dhcpcd
@@ -333,7 +334,7 @@ systemctl enable devmon@root
 #systemctl disable unattended-upgrades
 #systemctl mask packagekit
 #systemctl mask polkit
-systemctl mask rpi-eeprom-update
+#-#systemctl mask rpi-eeprom-update
 
 # Zynthian specific systemd services
 systemctl enable jack2

@@ -40,7 +40,7 @@ else
 	if [ ! -d "zynthian-sys" ]; then
 		apt-get update
 		apt-get -y install apt-utils git parted screen
-		git clone -b nuc https://github.com/smiths73v3/zynthian-sys.git
+		git clone -b NUC https://github.com/smiths73v3/zynthian-sys.git
 	fi
 	cd zynthian-sys/scripts
 	./setup_system_nuc_dietpi_64bit_bookworm.sh
