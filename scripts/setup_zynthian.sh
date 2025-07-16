@@ -33,16 +33,17 @@ cd
 
 if [ "$1" = "wiggle" ] || [ ! -f ~/.wiggled ]; then
 	echo `date` >  ~/.wiggled
-	raspi-config --expand-rootfs
+	#On NUC systems we don't want to expand....
+	#raspi-config --expand-rootfs
 	reboot
 else
 	if [ ! -d "zynthian-sys" ]; then
 		apt-get update
 		apt-get -y install apt-utils git parted screen
-		git clone -b oram https://github.com/zynthian/zynthian-sys.git
+		git clone -b nuc https://github.com/smiths73v3/zynthian-sys.git
 	fi
 	cd zynthian-sys/scripts
-	./setup_system_raspioslite_64bit_bookworm.sh
+	./setup_system_nuc_dietpi_64bit_bookworm.sh
 	cd
 	rm -rf zynthian-sys
 fi
