@@ -31,10 +31,18 @@
 
 cd
 
+if uname -a | grep -qi x86_64; then
+	echo "DietPi detected."
+	echo "force wiggle to bypass rpi-config"
+	echo 'date' > ~/.wiggled
+	export IS_X86_64=true
+else
+	export IS_X86_64=false
+fi
+
 if [ "$1" = "wiggle" ] || [ ! -f ~/.wiggled ]; then
 	echo `date` >  ~/.wiggled
-	#On NUC systems we don't want to expand....
-	#raspi-config --expand-rootfs
+	raspi-config --expand-rootfs
 	reboot
 else
 	if [ ! -d "zynthian-sys" ]; then
@@ -43,8 +51,11 @@ else
 		git clone -b NUC https://github.com/smiths73v3/zynthian-sys.git
 	fi
 	cd zynthian-sys/scripts
-	./setup_system_nuc_dietpi_64bit_bookworm.sh
+	if [ "$IS_X86_64" = "true" ]; then
+		./setup_system_nuc_dietpi_64bit_bookworm.sh
+	else
+		./setup_system_raspiolite_64bit_bookworm.sh
+	fi
 	cd
 	rm -rf zynthian-sys
 fi
-

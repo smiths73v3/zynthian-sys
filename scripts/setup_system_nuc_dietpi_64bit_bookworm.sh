@@ -85,7 +85,7 @@ echo "deb https://www.deb-multimedia.org bookworm main non-free" >> /etc/apt/sou
 apt-get -y update -oAcquire::AllowInsecureRepositories=true
 apt-get -y --allow-unauthenticated  install deb-multimedia-keyring
 
-# KXStudio
+# KXStudio FIXME: This seems wrong as of 2025-07-16
 wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.1.0_all.deb
 sudo dpkg -i kxstudio-repos_11.1.0_all.deb
 rm -f kxstudio-repos_11.1.0_all.deb
@@ -113,7 +113,7 @@ apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfa
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
 firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
-shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev
+shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev network-manager
 #firmware-ralink 
 
 #TODO => Configure xfwm to use shiki-colors theme in VNC
@@ -161,7 +161,7 @@ ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband
 #libgd2-xpm-dev
 
 # Python3
-apt-get -y install python3 python3-dev python3-pip cython3 python3-cffi 2to3 python3-tk python3-dbus python3-mpmath \
+apt-get -y install python3 python3-venv python3-dev python3-pip cython3 python3-cffi 2to3 python3-tk python3-dbus python3-mpmath \
 python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
 python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
 python3-mutagen python3-pam python3-bcrypt
