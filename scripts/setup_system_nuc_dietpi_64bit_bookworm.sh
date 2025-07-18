@@ -113,7 +113,8 @@ apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfa
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
 firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
-shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev network-manager
+shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev network-manager \
+lsb-release
 #firmware-ralink 
 
 #TODO => Configure xfwm to use shiki-colors theme in VNC
@@ -121,7 +122,7 @@ shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev netwo
 # CLI Tools
 apt-get -y install psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
 fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi ffmpeg qjackctl mediainfo \
-xterm gpiod xfce4-terminal tigervnc-tools
+xterm gpiod xfce4-terminal tigervnc-tools less
 #  qmidinet
 
 #------------------------------------------------
@@ -363,7 +364,7 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 $ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
 
 # Install mod-ttymidi (MOD's ttymidi version with jackd MIDI support)
-$ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
+#-#$ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
 
 # Install LV2 lilv library
 $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
