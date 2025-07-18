@@ -295,6 +295,8 @@ echo "source $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh > /dev/null 2
 # => Shell & Login Config
 echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian
+#disable dietpi bashrc splash and super config
+mv /etc/bashrc.d/dietpi.bash /etc/bashrc.d/dietpi.disabled
 
 # => Allow root ssh login
 echo -e "\nPermitRootLogin yes" >> /etc/ssh/sshd_config
