@@ -188,9 +188,9 @@ git clone -b "${ZYNTHIAN_SYS_BRANCH}" "${ZYNTHIAN_SYS_REPO}"
 #git config --global pull.rebase false
 
 # Zyncoder library
-#-#cd "$ZYNTHIAN_DIR"
-#-#git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
-#-#./zyncoder/build.sh
+cd "$ZYNTHIAN_DIR"
+git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
+./zyncoder/build.sh
 
 # Zynthian UI
 cd "$ZYNTHIAN_DIR"

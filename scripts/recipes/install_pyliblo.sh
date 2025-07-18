@@ -11,4 +11,5 @@ cd pyliblo
 pip3 install .
 cd ..
 
-rm -rf pyliblo
+#--- Leave this around for now, so I can test the pyliblo install failure?
+#-#rm -rf pyliblo
