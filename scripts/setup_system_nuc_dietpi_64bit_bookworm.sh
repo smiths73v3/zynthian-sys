@@ -92,8 +92,9 @@ sudo dpkg -i kxstudio-repos_11.2.0_all.deb
 #-#rm -f kxstudio-repos_11.2.0_all.deb
 
 # Zynthian
-wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
-echo "deb https://deb.zynthian.org/zynthian-oram bookworm-oram main" > "/etc/apt/sources.list.d/zynthian.list"
+#-# Zynthian is not supplying amd64 packages, so don't add the repo for now
+#-#wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
+#-#echo "deb https://deb.zynthian.org/zynthian-oram bookworm-oram main" > "/etc/apt/sources.list.d/zynthian.list"
 
 # Sfizz => Repo version segfaults!!
 #sfizz_url_base="https://download.opensuse.org/repositories/home:/sfztools:/sfizz/Raspbian_12"
@@ -150,7 +151,8 @@ libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-
 libclthreads-dev libclxclient-dev 
 
 #-# Debugging this missing package...
-apt-get -y --no-install-recommends install libsndfile-zyndev
+#-# apt-get -y --no-install-recommends install libsndfile-zyndev
+apt-get -y --no-install-recommends install libsndfile-dev
 
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4
@@ -371,7 +373,7 @@ apt-mark hold zynaddsubfx
 apt-mark hold zynaddsubfx-lv2
 
 # Install Fluidsynth & SF2 SondFonts
-apt-get -y remove libsndfile-zyndev
+#-#apt-get -y remove libsndfile-zyndev
 apt-get -y install libsndfile1-dev libinstpatch-dev
 apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
 # Stop & disable systemd fluidsynth service
@@ -470,9 +472,9 @@ $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 #------------------------------------------------
 # Zynthian specific packages (from zynthian repo)
 #------------------------------------------------
-
-apt-get -y remove libsndfile1-dev libfluidsynth-dev libinstpatch-dev
-apt-get -y install libsndfile-zyndev zynbluez jamulus
+#-# these are not provided for amd64, so leave the packages we had.
+#-#apt-get -y remove libsndfile1-dev libfluidsynth-dev libinstpatch-dev
+#-#apt-get -y install libsndfile-zyndev zynbluez jamulus
 
 #------------------------------------------------
 # Final configuration

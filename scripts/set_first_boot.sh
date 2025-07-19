@@ -77,4 +77,6 @@ sleep 3
 sync
 
 # Power Off
-poweroff
+#-# This seems wrong when this script is called from setup_system because it will power off the
+#-# system before the recipes are installed.... 
+#-# poweroff

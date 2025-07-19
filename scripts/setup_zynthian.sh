@@ -57,5 +57,6 @@ else
 		./setup_system_raspiolite_64bit_bookworm.sh
 	fi
 	cd
-	rm -rf zynthian-sys
+	#-# don't remove the zynthian-sys from here for now, keep it in case I tweaked something for the install debug
+	#-# rm -rf zynthian-sys
 fi
