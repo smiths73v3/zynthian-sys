@@ -28,8 +28,13 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # 
 #******************************************************************************
-
 cd
+
+set -x #enable command tracing
+LOG_FILE="./setup_zynthian.log"
+
+# Redirect all stdout and stderr to the log file
+exec > >(tee -a "${LOG_FILE}") 2>&1
 
 if uname -a | grep -qi x86_64; then
 	echo "DietPi detected."
