@@ -85,10 +85,11 @@ echo "deb https://www.deb-multimedia.org bookworm main non-free" >> /etc/apt/sou
 apt-get -y update -oAcquire::AllowInsecureRepositories=true
 apt-get -y --allow-unauthenticated  install deb-multimedia-keyring
 
-# KXStudio FIXME: This seems wrong as of 2025-07-16
-wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.1.0_all.deb
-sudo dpkg -i kxstudio-repos_11.1.0_all.deb
-rm -f kxstudio-repos_11.1.0_all.deb
+# KXStudio
+wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.2.0_all.deb
+sudo dpkg -i kxstudio-repos_11.2.0_all.deb
+#-# Leave this around so we know for sure, and can reinstall if needed
+#-#rm -f kxstudio-repos_11.2.0_all.deb
 
 # Zynthian
 wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
@@ -146,7 +147,10 @@ libavcodec59 libavformat59 libavutil57 libavformat-dev libavcodec-dev libgpiod-d
 libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
 libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
 libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
-libclthreads-dev libclxclient-dev libsndfile-zyndev
+libclthreads-dev libclxclient-dev 
+
+#-# Debugging this missing package...
+apt-get -y --no-install-recommends install libsndfile-zyndev
 
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4
