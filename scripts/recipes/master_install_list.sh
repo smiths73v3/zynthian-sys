@@ -29,86 +29,86 @@ source "zynthian_envars_extended.sh"
 #------------------------------------------------
 
 # Install Jack2
-#./install_jack2.sh
+#$ZYNTHIAN_RECIPE_DIR/install_jack2.sh
 
 # Install modified Bluez from zynthian repo
-#./install_bluez.sh
+#$ZYNTHIAN_RECIPE_DIR/install_bluez.sh
 
 # Install pyliblo library (liblo OSC library for Python)
-./install_pyliblo.sh
+$ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
 
 # Install mod-ttymidi (MOD's ttymidi version with jackd MIDI support)
-#-#./install_mod-ttymidi.sh
+#-#$ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
 
 # Install LV2 lilv library
-./install_lv2_lilv.sh
+$ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
 
 # Install the LV2 C++ Tool Kit
-./install_lvtk.sh
+$ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
 # => lvtk-1 failed
 # TODO FAILED=> ninja: build stopped: subcommand failed.
 
 # Install LV2 Jalv Plugin Host
-./install_lv2_jalv.sh
+$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
 
 # Install Aubio Library & Tools
-./install_aubio.sh
+$ZYNTHIAN_RECIPE_DIR/install_aubio.sh
 
 # Install jpmidi (MID player for jack with transport sync)
-#./install_jpmidi.sh
+#$ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
 # TODO => No configure !! It must be changed to meson or waf or something like that....
 # Do we need this? => I think no!!
 
 # Install jack_capture (jackd audio recorder)
-./install_jack_capture.sh
+$ZYNTHIAN_RECIPE_DIR/install_jack_capture.sh
 
 # Install jack_smf utils (jackd MID-file player/recorder)
-./install_jack-smf-utils.sh
+$ZYNTHIAN_RECIPE_DIR/install_jack-smf-utils.sh
 
 # Install touchosc2midi (TouchOSC Bridge)
-./install_touchosc2midi.sh
+$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
 
 # Install jackclient (jack-client python library)
-#./install_jackclient-python.sh
+#$ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
 
 # Install QMidiNet (MIDI over IP Multicast)
-./install_qmidinet.sh
+$ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
 
 # Install jackrtpmidid (jack RTP-MIDI daemon)
-./install_jackrtpmidid.sh
+$ZYNTHIAN_RECIPE_DIR/install_jackrtpmidid.sh
 
 # Install the DX7 SysEx parser
-./install_dxsyx.sh
+$ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
 
 # Install preset2lv2 (Convert native presets to LV2)
-./install_preset2lv2.sh
+$ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
 
 # Install QJackCtl
-#./install_qjackctl.sh
+#$ZYNTHIAN_RECIPE_DIR/install_qjackctl.sh
 
 # Install patchage
-./install_patchage.sh
+$ZYNTHIAN_RECIPE_DIR/install_patchage.sh
 
 # Install the njconnect Jack Graph Manager
-./install_njconnect.sh
+$ZYNTHIAN_RECIPE_DIR/install_njconnect.sh
 
 # Install Mutagen (when available, use pip3 install)
-# ./install_mutagen.sh
+# $ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
 
 # Install VL53L0X library (Distance Sensor)
-./install_VL53L0X.sh
+$ZYNTHIAN_RECIPE_DIR/install_VL53L0X.sh
 
 # Install MCP4748 library (Analog Output / CV-OUT)
-./install_MCP4728.sh
+$ZYNTHIAN_RECIPE_DIR/install_MCP4728.sh
 
 # Install noVNC web viewer
-./install_noVNC.sh
+$ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
 
 # Install terminal emulator for tornado (webconf)
-#./install_terminado.sh
+#$ZYNTHIAN_RECIPE_DIR/install_terminado.sh
 
 # Install DT overlays for waveshare displays and others
-#-#./install_waveshare-dtoverlays.sh
+#-#$ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 
 # Install web filebrowser
-./install_filebrowser.sh
+$ZYNTHIAN_RECIPE_DIR/install_filebrowser.sh
