@@ -27,10 +27,10 @@
 #------------------------------------------------------------------------------
 
 # With the SDcard mounted in your computer
-cd /media/txino/bootfs
-echo -n "zyn:" > userconf.txt
-echo 'opensynth' | openssl passwd -6 -stdin >> userconf.txt
-touch ssh
+#-#cd /media/txino/bootfs
+#-#echo -n "zyn:" > userconf.txt
+#-#echo 'opensynth' | openssl passwd -6 -stdin >> userconf.txt
+#-#touch ssh
 
 #------------------------------------------------------------------------------
 # Load Environment Variables
@@ -68,13 +68,13 @@ apt-get -y update --allow-releaseinfo-change
 apt-get -y full-upgrade
 
 # Install required dependencies if needed
-apt-get -y install apt-utils apt-transport-https sudo software-properties-common parted dirmngr rpi-eeprom gpgv wget
+apt-get -y install apt-utils apt-transport-https sudo software-properties-common parted dirmngr gpgv wget ssh
 
 # Update Firmware
-if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
-    apt-get -y install rpi-update
-    rpi-update
-fi
+#-#if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
+#-#    apt-get -y install rpi-update
+#-#    rpi-update
+#-#fi
 
 #------------------------------------------------
 # Add Repositories
@@ -172,6 +172,8 @@ apt-get -y install python3 python3-venv python3-dev python3-pip cython3 python3-
 python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
 python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
 python3-mutagen python3-pam python3-bcrypt
+
+apt-get -y install python3-alsaaudio python3-pyalsa
 
 # Python2 (DEPRECATED!!)
 #apt-get -y install python-setuptools python-is-python2 python-dev-is-python2
