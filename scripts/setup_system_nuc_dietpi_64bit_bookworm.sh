@@ -248,6 +248,8 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/scenes"
 mkdir "$ZYNTHIAN_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
 
+mkdir "/boot/firmware/"
+
 # Copy default snapshots
 cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000
 
