@@ -35,6 +35,8 @@
 #------------------------------------------------------------------------------
 # Load Environment Variables
 #------------------------------------------------------------------------------
+#lsb_release is missing in the base DietPi image, so install it
+apt-get -y install lsb-release 
 
 source "zynthian_envars_extended.sh"
 
