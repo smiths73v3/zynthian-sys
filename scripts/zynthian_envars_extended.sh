@@ -95,6 +95,7 @@ if [ -z "$RASPI" ]; then
 		CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations -ffast-math"
 	elif [ "$hw_architecture" = "x86_64" ]; then
 		#nothing special for x86_64 at the moment
+        NONE="none"
 	fi
 
 	rbpi_words=($rbpi_version)
