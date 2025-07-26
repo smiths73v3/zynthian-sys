@@ -93,6 +93,8 @@ if [ -z "$RASPI" ]; then
 		CFLAGS="-mcpu=cortex-a72 -mtune=cortex-a72"
 		#CFLAGS="${CFLAGS} -mlittle-endian -munaligned-access -mvectorize-with-neon-quad -ftree-vectorize"
 		CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations -ffast-math"
+	elif [ "$hw_architecture" = "x86_64" ]; then
+		#nothing special for x86_64 at the moment
 	fi
 
 	rbpi_words=($rbpi_version)

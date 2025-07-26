@@ -150,6 +150,9 @@ libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloo
 libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
 libclthreads-dev libclxclient-dev 
 
+#Dietpi, alsa install
+apt-get -y --no-install-recommends install alsa-base alsa-utils alsa-oss alsa-plugins alsa-plugins-gui
+
 #-# Debugging this missing package...
 #-# apt-get -y --no-install-recommends install libsndfile-zyndev
 apt-get -y --no-install-recommends install libsndfile1-dev
@@ -272,9 +275,9 @@ tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XSt
 
 # Use tmpfs for tmp & logs
 echo "" >> /etc/fstab
-echo "tmpfs  /tmp  tmpfs  defaults,noatime,nosuid,nodev,size=100M   0  0" >> /etc/fstab
+#-#echo "tmpfs  /tmp  tmpfs  defaults,noatime,nosuid,nodev,size=100M   0  0" >> /etc/fstab
 echo "tmpfs  /var/tmp  tmpfs  defaults,noatime,nosuid,nodev,size=200M   0  0" >> /etc/fstab
-echo "tmpfs  /var/log  tmpfs  defaults,noatime,nosuid,nodev,noexec,size=50M  0  0" >> /etc/fstab
+#-#echo "tmpfs  /var/log  tmpfs  defaults,noatime,nosuid,nodev,noexec,size=50M  0  0" >> /etc/fstab
 
 # Fix timeout in network initialization
 if [ ! -d "/etc/systemd/system/networking.service.d" ]; then
@@ -348,6 +351,9 @@ systemctl enable devmon@root
 #systemctl mask packagekit
 #systemctl mask polkit
 #-#systemctl mask rpi-eeprom-update
+#dieetpi has dropbear, stop and disable it so openSSH works properly
+systemctl stop dropbear
+systemctl disable dropbear
 
 # Zynthian specific systemd services
 systemctl enable jack2

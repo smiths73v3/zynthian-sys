@@ -53,6 +53,9 @@ hardware_config = {
 
 def get_i2c_chips():
 	res = []
+	if not os.path.exists("/dev/i2c-1"):
+		print("ERROR: /dev/i2c-1 not found. I2C bus is not available.")
+		return res
 	out = check_output("i2cdetect -y 1", shell=True).decode().split("\n")
 	if len(out) > 3:
 		for i in range(0, 8):
