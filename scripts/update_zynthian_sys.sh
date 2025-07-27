@@ -195,7 +195,7 @@ ZYNTHIAN_AUBIONOTES_OPTIONS_ESC=${ZYNTHIAN_AUBIONOTES_OPTIONS//\//\\\/}
 ZYNTHIAN_CUSTOM_BOOT_CMDLINE=${ZYNTHIAN_CUSTOM_BOOT_CMDLINE//\n//}
 
 # Generate a good LV2 path
-if [ ${MACHINE_HW_NAME} = "x86_64"]; then
+if [ ${MACHINE_HW_NAME} = "x86_64" ]; then
     LV2_PATH="/usr/lib/lv2:/usr/local/lib/lv2:$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_DATA_DIR/presets/lv2:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 else
 	if [ ${MACHINE_HW_NAME} = "armv7l" ]; then

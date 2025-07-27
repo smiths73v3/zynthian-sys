@@ -126,12 +126,14 @@ lsb-release
 # CLI Tools
 apt-get -y install psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
 fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi ffmpeg qjackctl mediainfo \
-xterm gpiod xfce4-terminal tigervnc-tools less
+xterm gpiod xfce4-terminal tigervnc-tools less rsync 
 #  qmidinet
 
 #------------------------------------------------
 # Development Environment
 #------------------------------------------------
+#Dietpi, alsa install
+apt-get -y --no-install-recommends install alsa-utils
 
 # Libraries
 # AV Libraries => WARNING It should be reviewed on every new debian version!!
@@ -151,9 +153,6 @@ libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-de
 libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
 libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
 libclthreads-dev libclxclient-dev 
-
-#Dietpi, alsa install
-apt-get -y --no-install-recommends install alsa-base alsa-utils alsa-oss alsa-plugins alsa-plugins-gui
 
 #-# Debugging this missing package...
 #-# apt-get -y --no-install-recommends install libsndfile-zyndev
