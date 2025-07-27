@@ -70,7 +70,8 @@ apt-get -y update --allow-releaseinfo-change
 apt-get -y full-upgrade
 
 # Install required dependencies if needed
-apt-get -y install apt-utils apt-transport-https sudo software-properties-common parted dirmngr gpgv wget ssh
+apt-get -y install apt-utils apt-transport-https sudo software-properties-common parted dirmngr gpgv wget ssh \
+gpg-agent
 
 # Update Firmware
 #-#if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
