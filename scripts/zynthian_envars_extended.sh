@@ -136,7 +136,13 @@ if [ -z "$RASPI" ]; then
 
 	echo "Hardware Architecture: ${hw_architecture}"
 	echo "Hardware Model: ${rbpi_version}"
-
+else
+    # Non-RPi hardware
+	#workaround for missing i2c-1 bus blindly used in some places
+	if [ ! -e "/dev/i2c-1" ]; then
+		ln -s "/dev/i2c-0" "/dev/i2c-1"
+	fi
+	echo "Hardware Architecture: ${hw_architecture}"
 fi
 
 #------------------------------------------------------------------------------
