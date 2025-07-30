@@ -81,48 +81,57 @@ if [ -z "$RASPI" ]; then
 		rbpi_version="Unknown"
 	fi
 
-	if [ "$hw_architecture" = "armv7l" ]; then
-		# 32bits => RPi3 (default)
-		CFLAGS="-mcpu=cortex-a53 -mfloat-abi=hard -mfpu=neon-fp-armv8 -mneon-for-64bits -mtune=cortex-a53"
-		#CFLAGS="${CFLAGS} -mlittle-endian -munaligned-access -mvectorize-with-neon-quad -ftree-vectorize"
-		CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations -ffast-math"
-		#RPi2 => Not supported anymore!
-		#CFLAGS="-mcpu=cortex-a7 -mfloat-abi=hard -mfpu=neon-vfpv4 -mtune=cortex-a7"
-	elif [ "$hw_architecture" = "aarch64" ]; then
-		# 64 bits => RPi4
-		CFLAGS="-mcpu=cortex-a72 -mtune=cortex-a72"
-		#CFLAGS="${CFLAGS} -mlittle-endian -munaligned-access -mvectorize-with-neon-quad -ftree-vectorize"
-		CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations -ffast-math"
-	elif [ "$hw_architecture" = "x86_64" ]; then
-		#nothing special for x86_64 at the moment
-        NONE="none"
-	fi
-
-	rbpi_words=($rbpi_version)
-	rbpi_version_number=${rbpi_words[2]}
-
-	if [[ $rbpi_version_number == "5" ]]; then
-		gpio_chip_device="/dev/gpiochip4"
-		if [[ ! -e "$gpio_chip_device" ]]; then
-			ln -s "/dev/gpiochip0" "$gpio_chip_device"
+	if [ "$hw_architecture" = "x86_64" ]; then
+	    # Non-RPi hardware
+		#workaround for missing i2c-1 bus blindly used in some places
+		if [ ! -e "/dev/i2c-1" ]; then
+			ln -s "/dev/i2c-0" "/dev/i2c-1"
 		fi
-		i2c_device="/dev/i2c-1"
-	elif [[ $rbpi_version_number == "4" ]]; then
 		gpio_chip_device="/dev/gpiochip0"
-		i2c_device="/dev/i2c-1"
-	elif [[ $rbpi_version_number == "400" ]]; then
-		gpio_chip_device="/dev/gpiochip0"
-		i2c_device="/dev/i2c-1"
-	elif [[ $rbpi_version_number == "3" ]]; then
-		gpio_chip_device="/dev/gpiochip0"
-		i2c_device="/dev/i2c-1"
-	elif [[ $rbpi_version_number == "2" ]]; then
-		gpio_chip_device="/dev/gpiochip0"
-		i2c_device="/dev/i2c-1"
-	else
-		rbpi_version="$rbpi_version (UNSUPPORTED!)"
-		gpio_chip_device="/dev/gpiochip0"
-		i2c_device="/dev/i2c-1"
+		rbpi_version="x86_64 (Not a RPi!)"
+		$rbpi_version_number="99"
+		
+	else 
+		if [ "$hw_architecture" = "armv7l" ]; then
+			# 32bits => RPi3 (default)
+			CFLAGS="-mcpu=cortex-a53 -mfloat-abi=hard -mfpu=neon-fp-armv8 -mneon-for-64bits -mtune=cortex-a53"
+			#CFLAGS="${CFLAGS} -mlittle-endian -munaligned-access -mvectorize-with-neon-quad -ftree-vectorize"
+			CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations -ffast-math"
+			#RPi2 => Not supported anymore!
+			#CFLAGS="-mcpu=cortex-a7 -mfloat-abi=hard -mfpu=neon-vfpv4 -mtune=cortex-a7"
+		elif [ "$hw_architecture" = "aarch64" ]; then
+			# 64 bits => RPi4
+			CFLAGS="-mcpu=cortex-a72 -mtune=cortex-a72"
+			#CFLAGS="${CFLAGS} -mlittle-endian -munaligned-access -mvectorize-with-neon-quad -ftree-vectorize"
+			CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations -ffast-math"
+		fi
+
+		rbpi_words=($rbpi_version)
+		rbpi_version_number=${rbpi_words[2]}
+
+		if [[ $rbpi_version_number == "5" ]]; then
+			gpio_chip_device="/dev/gpiochip4"
+			if [[ ! -e "$gpio_chip_device" ]]; then
+				ln -s "/dev/gpiochip0" "$gpio_chip_device"
+			fi
+			i2c_device="/dev/i2c-1"
+		elif [[ $rbpi_version_number == "4" ]]; then
+			gpio_chip_device="/dev/gpiochip0"
+			i2c_device="/dev/i2c-1"
+		elif [[ $rbpi_version_number == "400" ]]; then
+			gpio_chip_device="/dev/gpiochip0"
+			i2c_device="/dev/i2c-1"
+		elif [[ $rbpi_version_number == "3" ]]; then
+			gpio_chip_device="/dev/gpiochip0"
+			i2c_device="/dev/i2c-1"
+		elif [[ $rbpi_version_number == "2" ]]; then
+			gpio_chip_device="/dev/gpiochip0"
+			i2c_device="/dev/i2c-1"
+		else
+			rbpi_version="$rbpi_version (UNSUPPORTED!)"
+			gpio_chip_device="/dev/gpiochip0"
+			i2c_device="/dev/i2c-1"
+		fi
 	fi
 
 	export MACHINE_HW_NAME=$hw_architecture
@@ -136,14 +145,6 @@ if [ -z "$RASPI" ]; then
 
 	echo "Hardware Architecture: ${hw_architecture}"
 	echo "Hardware Model: ${rbpi_version}"
-else
-    # Non-RPi hardware
-	#workaround for missing i2c-1 bus blindly used in some places
-	if [ ! -e "/dev/i2c-1" ]; then
-		ln -s "/dev/i2c-0" "/dev/i2c-1"
-	fi
-	echo "Hardware Architecture: ${hw_architecture}"
-fi
 
 #------------------------------------------------------------------------------
 # Apt Options

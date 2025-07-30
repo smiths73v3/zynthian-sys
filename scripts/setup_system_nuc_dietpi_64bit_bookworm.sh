@@ -95,7 +95,7 @@ sudo dpkg -i kxstudio-repos_11.2.0_all.deb
 #-#rm -f kxstudio-repos_11.2.0_all.deb
 
 # Zynthian
-#-# Zynthian is not supplying amd64 packages, so don't add the repo for now
+#-# Zynthian is not supplying x86_64 packages, so don't add the repo for now
 #-#wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
 #-#echo "deb https://deb.zynthian.org/zynthian-oram bookworm-oram main" > "/etc/apt/sources.list.d/zynthian.list"
 
@@ -270,6 +270,8 @@ pip3 install --upgrade pip
 pip3 install JACK-Client alsa-midi oyaml adafruit-circuitpython-neopixel-spi pyrubberband ffmpeg-python Levenshtein \
 sox meson ninja abletonparsing hwmon vcgencmd \
 tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js
+
+pip3 install tkinterweb
 
 #------------------------------------------------
 # System Adjustments
