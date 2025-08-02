@@ -36,13 +36,13 @@
 # Load basic tools
 #------------------------------------------------------------------------------
 apt-get update
-apt-get -y install apt-utils git parted screen
+apt-get -q -y install apt-utils git parted screen
 
 #------------------------------------------------------------------------------
 # Load Environment Variables
 #------------------------------------------------------------------------------
 #lsb_release is missing in the base DietPi image, so install it
-apt-get -y install lsb-release 
+apt-get -q -y install lsb-release 
 
 source "zynthian_envars_extended.sh"
 
@@ -72,11 +72,11 @@ source "zynthian_envars_extended.sh"
 #------------------------------------------------
 
 # Update System
-apt-get -y update --allow-releaseinfo-change
-apt-get -y full-upgrade
+apt-get -q -y update --allow-releaseinfo-change
+apt-get -q -y full-upgrade
 
 # Install required dependencies if needed
-apt-get -y install apt-utils apt-transport-https sudo software-properties-common parted dirmngr gpgv wget ssh \
+apt-get -q -y install apt-utils apt-transport-https sudo software-properties-common parted dirmngr gpgv wget ssh \
 gpg-agent
 
 # Update Firmware
@@ -91,8 +91,8 @@ gpg-agent
 
 # deb-multimedia repo
 echo "deb https://www.deb-multimedia.org bookworm main non-free" >> /etc/apt/sources.list
-apt-get -y update -oAcquire::AllowInsecureRepositories=true
-apt-get -y --allow-unauthenticated  install deb-multimedia-keyring
+apt-get -q -y update -oAcquire::AllowInsecureRepositories=true
+apt-get -q -y --allow-unauthenticated  install deb-multimedia-keyring
 
 # KXStudio
 wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.2.0_all.deb
@@ -110,17 +110,17 @@ sudo dpkg -i kxstudio-repos_11.2.0_all.deb
 #echo "deb $sfizz_url_base/ /" | sudo tee /etc/apt/sources.list.d/home:sfztools:sfizz.list
 #curl -fsSL $sfizz_url_base/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_sfztools_sfizz.gpg > /dev/null
 
-apt-get -y update
-apt-get -y full-upgrade
-apt-get -y autoremove
+apt-get -q -y update
+apt-get -q -y full-upgrade
+apt-get -q -y autoremove
 
 #------------------------------------------------
 # Install Required Packages
 #------------------------------------------------
 
 # System
-apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile bluez
-apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs \
+apt-get -q -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile bluez
+apt-get -q -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs \
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
 firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
@@ -131,7 +131,7 @@ lsb-release
 #TODO => Configure xfwm to use shiki-colors theme in VNC
 
 # CLI Tools
-apt-get -y install psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
+apt-get -q -y install psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
 fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi ffmpeg qjackctl mediainfo \
 xterm gpiod xfce4-terminal tigervnc-tools less rsync 
 #  qmidinet
@@ -140,11 +140,11 @@ xterm gpiod xfce4-terminal tigervnc-tools less rsync
 # Development Environment
 #------------------------------------------------
 #Dietpi, alsa install
-apt-get -y --no-install-recommends install alsa-utils
+apt-get -q -y --no-install-recommends install alsa-utils
 
 # Libraries
 # AV Libraries => WARNING It should be reviewed on every new debian version!!
-apt-get -y --no-install-recommends install libx11-dev libx11-xcb-dev libxcb-util-dev libxkbcommon-dev \
+apt-get -q -y --no-install-recommends install libx11-dev libx11-xcb-dev libxcb-util-dev libxkbcommon-dev \
 libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-headers libpango1.0-dev \
 libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
 libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid jack-midi-clock midisport-firmware libffi-dev \
@@ -163,13 +163,13 @@ libclthreads-dev libclxclient-dev
 
 #-# Debugging this missing package...
 #-# apt-get -y --no-install-recommends install libsndfile-zyndev
-apt-get -y --no-install-recommends install libsndfile1-dev
+apt-get -q -y --no-install-recommends install libsndfile1-dev
 
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4
 
 # Tools
-apt-get -y --no-install-recommends install build-essential git swig pkg-config autoconf automake premake4 \
+apt-get -q -y --no-install-recommends install build-essential git swig pkg-config autoconf automake premake4 \
 subversion gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake gobjc++ \
 ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli docutils-common faust
 
@@ -179,12 +179,12 @@ ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband
 #libgd2-xpm-dev
 
 # Python3
-apt-get -y install python3 python3-venv python3-dev python3-pip cython3 python3-cffi 2to3 python3-tk python3-dbus python3-mpmath \
+apt-get -q -y install python3 python3-venv python3-dev python3-pip cython3 python3-cffi 2to3 python3-tk python3-dbus python3-mpmath \
 python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
 python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
 python3-mutagen python3-pam python3-bcrypt
 
-apt-get -y install python3-alsaaudio python3-pyalsa
+apt-get -q -y install python3-alsaaudio python3-pyalsa
 
 # Python2 (DEPRECATED!!)
 #apt-get -y install python-setuptools python-is-python2 python-dev-is-python2
@@ -471,15 +471,15 @@ $ZYNTHIAN_RECIPE_DIR/install_filebrowser.sh
 
 # Install ZynAddSubFX => from Bookworm repository instead of KXStudio
 #$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
-apt-get -y install -t bookworm zynaddsubfx
-apt-get -y install -t bookworm zynaddsubfx-lv2
+apt-get -q -y install -t bookworm zynaddsubfx
+apt-get -q -y install -t bookworm zynaddsubfx-lv2
 apt-mark hold zynaddsubfx
 apt-mark hold zynaddsubfx-lv2
 
 # Install Fluidsynth & SF2 SondFonts
 #-#apt-get -y remove libsndfile-zyndev
-apt-get -y install libsndfile1-dev libinstpatch-dev
-apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
+apt-get -q -y install libsndfile1-dev libinstpatch-dev
+apt-get -q -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
 # Stop & disable systemd fluidsynth service
 systemctl stop --user fluidsynth.service
 systemctl mask --user fluidsynth.service
@@ -498,7 +498,7 @@ $ZYNTHIAN_RECIPE_DIR/install_sfizz.sh
 
 # Install Linuxsampler
 #$ZYNTHIAN_RECIPE_DIR/install_linuxsampler_stable.sh
-apt-get -y install linuxsampler gigtools
+apt-get -q -y install linuxsampler gigtools
 
 # Install Fantasia (linuxsampler Java GUI)
 #$ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
@@ -519,7 +519,7 @@ $ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
 $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 
 # Install SooperLooper backend
-apt-get -y install sooperlooper
+apt-get -q -y install sooperlooper
 
 # Install AIDA-X neural network loader
 $ZYNTHIAN_RECIPE_DIR/install_aidax.sh
@@ -529,13 +529,13 @@ $ZYNTHIAN_RECIPE_DIR/install_aidax.sh
 # TODO find a deb repo
 
 # Install Pure Data stuff
-apt-get -y install puredata puredata-core puredata-utils puredata-import python3-yaml \
+apt-get -q -y install puredata puredata-core puredata-utils puredata-import python3-yaml \
 pd-lua pd-moonlib pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-bassemu pd-readanysf pd-pddp \
 pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd \
 pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-earplug pd-wiimote pd-pmpd pd-motex \
 pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
 pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
-apt-get -y install pd-ambix pd-autopreset pd-cmos pd-creb pd-deken pd-deken-apt pd-extendedview pd-flext-dev pd-flext-doc pd-gil \
+apt-get -q -y install pd-ambix pd-autopreset pd-cmos pd-creb pd-deken pd-deken-apt pd-extendedview pd-flext-dev pd-flext-doc pd-gil \
 pd-hexloader pd-iem pd-jsusfx pd-kollabs pd-lib-builder pd-log pd-mediasettings pd-mrpeach-net pd-nusmuk pd-pan \
 pd-pduino pd-pool pd-puremapping pd-purest-json pd-rtclib pd-slip pd-syslog pd-tclpd pd-testtools pd-unauthorized \
 pd-upp pd-xbee pd-xsample

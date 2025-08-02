@@ -52,7 +52,7 @@ if [ "$1" = "wiggle" ] || [ ! -f ~/.wiggled ]; then
 else
 	if [ ! -d "zynthian-sys" ]; then
 		apt-get update
-		apt-get -y install apt-utils git parted screen
+		apt-get -q -y install apt-utils git parted screen
 		git clone -b NUC https://github.com/smiths73v3/zynthian-sys.git
 	fi
 	cd zynthian-sys/scripts
