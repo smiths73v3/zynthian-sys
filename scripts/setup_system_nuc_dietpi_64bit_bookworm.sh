@@ -33,6 +33,11 @@
 #-#touch ssh
 
 #------------------------------------------------------------------------------
+# Load Environment Variables for the installation
+#------------------------------------------------------------------------------
+DEBIAN_FRONTEND=noninteractive 
+
+#------------------------------------------------------------------------------
 # Load basic tools
 #------------------------------------------------------------------------------
 apt-get update
@@ -129,6 +134,11 @@ lsb-release
 #firmware-ralink 
 
 #TODO => Configure xfwm to use shiki-colors theme in VNC
+
+# qjackctl install below requieres jackd2, instll here and bypass the prompt for realtime
+echo "jackd2 install"
+apt-get install -q -y jackd2
+echo "jackd2 install done"
 
 # CLI Tools
 apt-get -q -y install psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
