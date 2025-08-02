@@ -145,6 +145,7 @@ if [ -z "$RASPI" ]; then
 
 	echo "Hardware Architecture: ${hw_architecture}"
 	echo "Hardware Model: ${rbpi_version}"
+fi
 
 #------------------------------------------------------------------------------
 # Apt Options
