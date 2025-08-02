@@ -614,5 +614,5 @@ if [[ "$ZYNTHIAN_SETUP_APT_CLEAN" == "yes" ]]; then # Clean apt cache (if instru
 fi
 
 #------------------------------------------------
-
+reboot 
 

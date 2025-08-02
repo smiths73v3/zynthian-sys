@@ -33,7 +33,7 @@ cd
 set -x #enable command tracing
 LOG_FILE="./setup_zynthian.log"
 
-# Redirect all stdout and stderr to the log file
+# Redirect all stdout and stderr to the log file appending for when we reboot etc.
 exec > >(tee -a "${LOG_FILE}") 2>&1
 
 if uname -m | grep -qi x86_64; then
