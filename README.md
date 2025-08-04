@@ -15,5 +15,6 @@ You can buy official kits in the zynthian shop:
 
 + [shop](https://shop.zynthian.org)
 
-+[Zynthian x86_64](./Zynth_x86_64.md)
+Installation instructions for **x86_64**
++ [Zynthian x86_64](./Zynth_x86_64.md)
 

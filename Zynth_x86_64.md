@@ -32,7 +32,7 @@ $>./zynthian-sys-NUC/scripts/setup_zynthian.sh
 
 ```
 
-## -~=[Full Zynthian Install Happens]=~-
+## \-\~\=\[Full Zynthian Install Happens\]\=\~\-
 
 Initial Zynthian GUI appears.
 
