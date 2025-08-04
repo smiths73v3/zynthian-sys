@@ -14,3 +14,6 @@ You can learn more about the Zynthian Project in any of our sites:
 You can buy official kits in the zynthian shop:
 
 + [shop](https://shop.zynthian.org)
+
++[Zynthian x86_64](./Zynth_x86_64.md)
+
