@@ -40,6 +40,11 @@ else
 	echo "ERROR: Can't load zynthian configuration! => zynthian_envars.sh"
 fi
 
+if uname -m | grep -qi x86_64; then
+	export IS_X86_64=true
+	else
+	export IS_X86_64=false
+fi
 #------------------------------------------------------------------------------
 # Load Extended Environment Variables
 #------------------------------------------------------------------------------
@@ -144,7 +149,9 @@ if [ -z "$RASPI" ]; then
 	export RASPI="true"
 
 	echo "Hardware Architecture: ${hw_architecture}"
-	echo "Hardware Model: ${rbpi_version}"
+	if [ "$rpi_version" != "99" ]; then
+		echo "Hardware Model: ${rbpi_version}"
+	fi
 fi
 
 #------------------------------------------------------------------------------

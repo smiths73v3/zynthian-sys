@@ -118,14 +118,18 @@ def autodetect_config():
 	return config_name
 
 # --------------------------------------------------------------------
+#Check x86_64 for byassing rpi-config
+if os.environ.get('IS_X86_64') == 'true':
+	print("Detected x86_64 architecture. Bypassing rpi-config.")
+	config_name = "x86_64"	
+else:
+	# Get list of i2c chips
+	i2c_chips = get_i2c_chips()
+	print(f"Detected I2C Chips: {i2c_chips}")
 
-# Get list of i2c chips
-i2c_chips = get_i2c_chips()
-print(f"Detected I2C Chips: {i2c_chips}")
-
-# Detect kit version
-config_name = autodetect_config()
-print(f"Detected {config_name} kit!")
+	# Detect kit version
+	config_name = autodetect_config()
+	print(f"Detected {config_name} kit!")
 
 # Configure Zynthian
 if config_name:
