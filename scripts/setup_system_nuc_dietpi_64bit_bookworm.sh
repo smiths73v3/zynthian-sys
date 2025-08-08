@@ -151,6 +151,8 @@ xterm gpiod xfce4-terminal tigervnc-tools less rsync
 #------------------------------------------------
 #Dietpi, alsa install
 apt-get -q -y --no-install-recommends install alsa-utils
+apt-get -q -y --no-install-recommends install alsa-topology-conf
+
 
 # Libraries
 # AV Libraries => WARNING It should be reviewed on every new debian version!!

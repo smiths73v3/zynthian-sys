@@ -33,9 +33,9 @@ export ZYNTHIAN_DISABLE_OTG="0"
 export ZYNTHIAN_WIFI_MODE="off"
 
 #Audio Config
-export SOUNDCARD_NAME="PC Audio"
+export SOUNDCARD_NAME="x86_64"
 export SOUNDCARD_CONFIG=""
-export SOUNDCARD_MIXER="Headphone"
+export SOUNDCARD_MIXER="Master"
 export JACKD_OPTIONS="-P 70 -s -S -d alsa -d hw:0 -r 48000 -o 2 -p 256 -n 3 -X raw"
 
 #Display Config
@@ -76,6 +76,10 @@ export ZYNTHIAN_UI_MULTICHANNEL_RECORDER="1"
 export ZYNTHIAN_UI_POWER_SAVE_MINUTES="10"
 export ZYNTHIAN_VNCSERVER_ENABLED="0"
 export ZYNTHIAN_MIDI_PLAY_LOOP="1"
+
+# x86_64 custom UI
+export ZYNTHIAN_UI_TOUCH_NAVIGATION="0"
+export ZYNTHIAN_TOUCH_KEYPAD="x86_64"
 
 # MIDI system configuration
 export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/config/midi-profiles/default.sh"
