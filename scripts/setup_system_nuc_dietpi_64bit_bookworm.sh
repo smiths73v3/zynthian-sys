@@ -69,7 +69,7 @@ source "zynthian_envars_extended.sh"
 [ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="NUC"
 [ -n "$ZYNTHIAN_UI_BRANCH" ] || ZYNTHIAN_UI_BRANCH="NUC"
 [ -n "$ZYNTHIAN_ZYNCODER_BRANCH" ] || ZYNTHIAN_ZYNCODER_BRANCH="NUC"
-[ -n "$ZYNTHIAN_WEBCONF_BRANCH" ] || ZYNTHIAN_WEBCONF_BRANCH=$ZYNTHIAN_BRANCH
+[ -n "$ZYNTHIAN_WEBCONF_BRANCH" ] || ZYNTHIAN_WEBCONF_BRANCH="NUC"
 [ -n "$ZYNTHIAN_DATA_BRANCH" ] || ZYNTHIAN_DATA_BRANCH=$ZYNTHIAN_BRANCH
 
 #------------------------------------------------
@@ -109,6 +109,8 @@ sudo dpkg -i kxstudio-repos_11.2.0_all.deb
 #-# Zynthian is not supplying x86_64 packages, so don't add the repo for now
 #-#wget -O - https://deb.zynthian.org/deb-zynthian-org.gpg > /etc/apt/trusted.gpg.d/deb-zynthian-org.gpg
 #-#echo "deb https://deb.zynthian.org/zynthian-oram bookworm-oram main" > "/etc/apt/sources.list.d/zynthian.list"
+#-# Sift the package list, and determine which ones we need...
+#-# Right now looks like only libasound2-data
 
 # Sfizz => Repo version segfaults!!
 #sfizz_url_base="https://download.opensuse.org/repositories/home:/sfztools:/sfizz/Raspbian_12"
@@ -176,6 +178,9 @@ libclthreads-dev libclxclient-dev
 #-# Debugging this missing package...
 #-# apt-get -y --no-install-recommends install libsndfile-zyndev
 apt-get -q -y --no-install-recommends install libsndfile1-dev
+
+#-# From zynthian repo, but not available for amd64
+apt-get -q -y libasound2-data
 
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4

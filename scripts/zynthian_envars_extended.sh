@@ -94,7 +94,7 @@ if [ -z "$RASPI" ]; then
 		fi
 		gpio_chip_device="/dev/gpiochip0"
 		rbpi_version="x86_64 (Not a RPi!)"
-		$rbpi_version_number="99"
+		rbpi_version_number="86"
 		
 	else 
 		if [ "$hw_architecture" = "armv7l" ]; then
@@ -149,7 +149,7 @@ if [ -z "$RASPI" ]; then
 	export RASPI="true"
 
 	echo "Hardware Architecture: ${hw_architecture}"
-	if [ "$rpi_version" != "99" ]; then
+	if [ "$rpi_version" != "86" ]; then
 		echo "Hardware Model: ${rbpi_version}"
 	fi
 fi
