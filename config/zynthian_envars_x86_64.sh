@@ -79,6 +79,7 @@ export ZYNTHIAN_MIDI_PLAY_LOOP="1"
 
 # x86_64 custom UI
 export ZYNTHIAN_UI_TOUCH_NAVIGATION="0"
+export ZYNTHIAN_UI_TOUCH_NAVIGATION2="v5_keypad_left"
 export ZYNTHIAN_TOUCH_KEYPAD="x86_64"
 
 # MIDI system configuration
