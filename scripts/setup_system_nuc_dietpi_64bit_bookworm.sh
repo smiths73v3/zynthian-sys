@@ -154,6 +154,15 @@ xterm gpiod xfce4-terminal tigervnc-tools less rsync
 #Dietpi, alsa install
 apt-get -q -y --no-install-recommends install alsa-utils
 apt-get -q -y --no-install-recommends install alsa-topology-conf
+apt-get -q -y --no-install-recommends install alsa-firmware-loaders
+
+
+#------------------------------------------------
+# Acer Laptop Drivers
+#------------------------------------------------
+apt-get -q -y install firmware-intel-sound
+#module options per https://wiki.debian.org/ALSA#Intel_HD_Audio
+sh -c 'echo "options snd-intel-dspcfg dsp_driver=1" >> /etc/modprobe.d/inteldsp.conf'
 
 
 # Libraries
@@ -582,7 +591,7 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
 # Install Plugins
 #------------------------------------------------
 cd "$ZYNTHIAN_SYS_DIR/scripts"
-./setup_plugins_rbpi.sh
+./setup_plugins_x86_64.sh
 
 #------------------------------------------------
 # Install Ableton Link Support
