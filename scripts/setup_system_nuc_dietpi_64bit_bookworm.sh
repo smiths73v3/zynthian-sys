@@ -36,7 +36,7 @@
 # Load Environment Variables for the installation
 #------------------------------------------------------------------------------
 DEBIAN_FRONTEND=noninteractive 
-
+alias mkdir='mkdir -p'
 #------------------------------------------------------------------------------
 # Load basic tools
 #------------------------------------------------------------------------------
@@ -317,7 +317,7 @@ echo "tmpfs  /var/tmp  tmpfs  defaults,noatime,nosuid,nodev,size=200M   0  0" >>
 
 # Fix timeout in network initialization
 if [ ! -d "/etc/systemd/system/networking.service.d" ]; then
-	mkdir -p "/etc/systemd/system/networking.service.d"
+	mkdir "/etc/systemd/system/networking.service.d"
 	echo -e "[Service]\nTimeoutStartSec=1\n" > "/etc/systemd/system/networking.service.d/reduce-timeout.conf"
 fi
 
