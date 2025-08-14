@@ -199,6 +199,9 @@ apt-get -q -y --no-install-recommends install build-essential git swig pkg-confi
 subversion gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake gobjc++ \
 ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli docutils-common faust
 
+#needed when building lv2 plugins from source
+apt-get -q -y clang
+
 # Missed tools from previous OS versions:
 #libjack-dev-session
 #non-ntk-dev

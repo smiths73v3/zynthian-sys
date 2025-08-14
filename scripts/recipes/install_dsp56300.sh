@@ -24,4 +24,4 @@ mv /usr/local/start_Impact__MS.sh /usr/local/bin
 #regenerate_lv2_presets.sh http://theusualsuspects.lv2.OsTIrus
 
 cd ..
-rm -rf "gearmulator"
+#-#rm -rf "gearmulator"
