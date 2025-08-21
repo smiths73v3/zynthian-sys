@@ -39,10 +39,10 @@ export SOUNDCARD_MIXER="Master"
 export JACKD_OPTIONS="-P 70 -s -S -d alsa -d hw:0 -r 48000 -o 2 -p 256 -n 3 -X raw"
 
 #Display Config
-export DISPLAY_NAME="Generic HDMI 1920x1080"
+export DISPLAY_NAME="Custom"
 export DISPLAY_CONFIG=""
-export DISPLAY_WIDTH="1920"
-export DISPLAY_HEIGHT="1080"
+export DISPLAY_WIDTH=""
+export DISPLAY_HEIGHT=""
 export FRAMEBUFFER="/dev/fb0"
 export DISPLAY_KERNEL_OPTIONS=""
 
