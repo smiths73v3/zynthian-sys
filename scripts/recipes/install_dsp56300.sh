@@ -3,14 +3,20 @@
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 
 if [ -d "gearmulator" ]; then
-    rm -rf "gearmulator"
+    #-#rm -rf "gearmulator"
+    #-#git clone --recurse-submodules https://github.com/dsp56300/gearmulator.git
+else
+    git clone --recurse-submodules https://github.com/smiths73v3/gearmulator.git
 fi
 
-git clone --recurse-submodules https://github.com/dsp56300/gearmulator.git
 cd gearmulator
+#-# Pull latest changes, and update submodules
+git pull
+git submodule update --init --recursive
 umount /tmp
-cmake --preset zynthian
-cmake --build --preset zynthian --target install
+cmake --fresh
+cmake --preset zynthian_x86_64
+cmake --build --preset zynthian_x86_64 --target install
 mount /tmp
 
 mv /usr/local/virusTestConsole /usr/local/bin
