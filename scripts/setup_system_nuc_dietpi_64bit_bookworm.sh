@@ -41,7 +41,7 @@ alias mkdir='mkdir -p'
 # Load basic tools
 #------------------------------------------------------------------------------
 apt-get update
-apt-get -q -y install apt-utils git parted screen
+apt-get -q -y install apt-utils git parted screen unzip zip
 
 #------------------------------------------------------------------------------
 # Load Environment Variables
@@ -184,6 +184,8 @@ libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloo
 libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
 libclthreads-dev libclxclient-dev 
 
+apt-get -q -y --no-install-recommends libltc11
+
 #-# Debugging this missing package...
 #-# apt-get -y --no-install-recommends install libsndfile-zyndev
 apt-get -q -y --no-install-recommends install libsndfile1-dev
@@ -200,7 +202,7 @@ subversion gettext intltool libtool libtool-bin cmake cmake-curses-gui flex biso
 ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli docutils-common faust
 
 #needed when building lv2 plugins from source
-apt-get -q -y clang
+apt-get -q -y --install-recommends clang 
 
 # Missed tools from previous OS versions:
 #libjack-dev-session
