@@ -119,7 +119,7 @@ sudo dpkg -i kxstudio-repos_11.2.0_all.deb
 
 apt-get -q -y update
 apt-get -q -y full-upgrade
-apt-get -q -y autoremove
+#-# apt-get -q -y autoremove
 
 #------------------------------------------------
 # Install Required Packages
@@ -645,10 +645,10 @@ python3 ./zynthian_lv2.py
 #touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # Clean
-apt-get -y autoremove # Remove unneeded packages
-if [[ "$ZYNTHIAN_SETUP_APT_CLEAN" == "yes" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
-    apt-get clean
-fi
+#-# apt-get -y autoremove # Remove unneeded packages
+#-# if [[ "$ZYNTHIAN_SETUP_APT_CLEAN" == "yes" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
+#-#    apt-get clean
+#-#fi
 
 #------------------------------------------------
 reboot 

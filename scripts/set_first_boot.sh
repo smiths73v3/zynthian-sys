@@ -11,8 +11,8 @@ fi
 
 # Clean unneeded packages & apt cache
 echo "Cleaning unused packages and cache..."
-apt -y autoremove
-apt clean
+#-#apt -y autoremove
+#-#apt clean
 
 # Delete configured wifi networks
 clean_wifi_networks.sh
