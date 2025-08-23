@@ -5,6 +5,7 @@ cd $ZYNTHIAN_PLUGINS_SRC_DIR
 if [ -d "gearmulator" ]; then
     #-#rm -rf "gearmulator"
     #-#git clone --recurse-submodules https://github.com/dsp56300/gearmulator.git
+    continue
 else
     git clone --recurse-submodules https://github.com/smiths73v3/gearmulator.git
 fi
