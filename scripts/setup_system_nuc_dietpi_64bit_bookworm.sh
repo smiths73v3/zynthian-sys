@@ -630,8 +630,10 @@ $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 $ZYNTHIAN_SYS_DIR/sbin/regenerate_keys.sh
 
 # Regenerate LV2 cache
-cd $ZYNTHIAN_UI_DIR/zyngine
-python3 ./zynthian_lv2.py
+#-#cd $ZYNTHIAN_UI_DIR/zyngine
+#-#python3 ./zynthian_lv2.py
+$ZYNTHIAN_SYS_DIR/sbin/regenerate_lv2_presets.sh
+$ZYNTHIAN_SYS_DIR/sbin/regenerate_engines_db.sh
 
 #------------------------------------------------
 # End & Cleanup
