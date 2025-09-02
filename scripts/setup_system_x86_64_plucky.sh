@@ -49,6 +49,7 @@ apt-get -q -y install apt-utils git parted screen unzip zip
 #lsb_release is missing in the base DietPi image, so install it
 apt-get -q -y install lsb-release 
 
+echogreen "Loading Zynthian Environment Variables"
 source "zynthian_envars_extended.sh"
 
 #------------------------------------------------
@@ -138,9 +139,9 @@ lsb-release
 #TODO => Configure xfwm to use shiki-colors theme in VNC
 
 # qjackctl install below requieres jackd2, instll here and bypass the prompt for realtime
-echo "jackd2 install"
+echogreen "jackd2 install"
 apt-get install -q -y jackd2
-echo "jackd2 install done"
+echogreen "jackd2 install done"
 
 # CLI Tools
 apt-get -q -y install psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
@@ -362,12 +363,14 @@ echo -e "\nPermitRootLogin yes" >> /etc/ssh/sshd_config
 # ZynthianOS version
 export ZYNTHIANOS_VERSION="2409"
 echo $ZYNTHIANOS_VERSION > /etc/zynthianos_version
+
 # Build Info
+BUILD_DATE=$(date +"%Y-%m-%d %H:%M:%S")
 echo "ZynthianOS ORAM-$ZYNTHIANOS_VERSION" > $ZYNTHIAN_DIR/build_info.txt
 echo "" >> $ZYNTHIAN_DIR/build_info.txt
-echo "Timestamp: 2025-07-16"  >> $ZYNTHIAN_DIR/build_info.txt
+echo "Timestamp: ${BUILD_DATE}"  >> $ZYNTHIAN_DIR/build_info.txt
 echo "" >> $ZYNTHIAN_DIR/build_info.txt
-echo "Built from DietPi Bookworm ($MACHINE_HW_NAME)" >> $ZYNTHIAN_DIR/build_info.txt
+echo "Built from Ubuntu Plucky ($MACHINE_HW_NAME)" >> $ZYNTHIAN_DIR/build_info.txt
 
 # Run configuration script
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
@@ -424,7 +427,7 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 $ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
 
 # Install mod-ttymidi (MOD's ttymidi version with jackd MIDI support)
-$ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
+#-#$ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
 
 # Install LV2 lilv library
 $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
@@ -502,6 +505,9 @@ $ZYNTHIAN_RECIPE_DIR/install_filebrowser.sh
 #------------------------------------------------
 # Build & Install Synthesis Software
 #------------------------------------------------
+
+echogreen "Build & Install Synthesis Software"
+if [ 0 ]; then
 
 # Install ZynAddSubFX => from Bookworm repository instead of KXStudio
 #$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
@@ -613,6 +619,10 @@ $ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 #-# these are not provided for amd64, so leave the packages we had.
 #-#apt-get -y remove libsndfile1-dev libfluidsynth-dev libinstpatch-dev
 #-#apt-get -y install libsndfile-zyndev zynbluez jamulus
+
+else
+echogreen "Skipping Build & Install Synthesis Software"
+fi
 
 #------------------------------------------------
 # Final configuration

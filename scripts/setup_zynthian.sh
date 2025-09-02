@@ -30,14 +30,22 @@
 #******************************************************************************
 cd
 
+set -e #exit on error, so get it right!!!!!
+
 set -x #enable command tracing
 LOG_FILE="./setup_zynthian.log"
+
+echogreen() {
+	echo -e "\e[32m" $1 "\e[0m"
+}
+
+echogreen "Starting Zynthian Setup Script"
 
 # Redirect all stdout and stderr to the log file appending for when we reboot etc.
 exec > >(tee -a "${LOG_FILE}") 2>&1
 
 if uname -m | grep -qi x86_64; then
-	echo "DietPi detected."
+	echo "x86_64 detected."
 	echo "force wiggle to bypass rpi-config"
 	echo 'date' > ~/.wiggled
 	export IS_X86_64=true
@@ -57,7 +65,8 @@ else
 	fi
 	cd zynthian-sys/scripts
 	if [ "$IS_X86_64" = "true" ]; then
-		./setup_system_nuc_dietpi_64bit_bookworm.sh
+		#./setup_system_nuc_dietpi_64bit_bookworm.sh
+		./setup_system_x86_64_plucky.sh
 	else
 		./setup_system_raspiolite_64bit_bookworm.sh
 	fi
