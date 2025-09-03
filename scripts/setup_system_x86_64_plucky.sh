@@ -168,9 +168,11 @@ apt-get -q -y  install network-manager
 
 echogreen "apt number 4- Firmware and non-free stuff"
 #Do these one at a time to catch failures
-apt-get -q -y install firmware-misc-nonfree 
-apt-get -q -y install firmware-brcm80211 
-apt-get -q -y install firmware-realtek 
+#-# not available #-# apt-get -q -y install firmware-misc-nonfree 
+#-# not available #-# apt-get -q -y install firmware-brcm80211 
+#-# not available #-# apt-get -q -y install firmware-realtek 
+#-# Really, the base ubuntu should have installed the drivers needed for wifi
+#-# especially if we got here. It may have been wired, but unlikely
 apt-get -q -y install atmel-firmware
 
 # qjackctl install below requieres jackd2, instll here and bypass the prompt for realtime
