@@ -146,7 +146,7 @@ apt-get -q -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfi
 #-#lsb-release
 #firmware-ralink 
 echogreen "apt number 1- Base System"
-apt-get -q -y install avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs lsb-release \
+apt-get -q -y install avahi-daemon usbutils udisks2 udevil exfatprogs lsb-release \
 cpufrequtils
 
 echogreen "apt number 2- Xdisplay stuff"
@@ -156,6 +156,7 @@ fonts-freefont-ttf x11vnc xserver-xorg-input-evdev
 #TODO => Configure xfwm to use shiki-colors theme in VNC
 
 echogreen "apt number 3- Network Base"
+#-# not available #-# apt-get -q -y  install dhcpcd-dbus
 apt-get -q -y  install wpasupplicant
 apt-get -q -y  install wireless-tools
 apt-get -q -y  install iw
