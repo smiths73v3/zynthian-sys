@@ -177,7 +177,12 @@ export ZYNTHIAN_TESTING_BRANCH="vangelis"
 # Enter python virtual environment
 #------------------------------------------------------------------------------
 
-source "$ZYNTHIAN_DIR/venv/bin/activate"
+if [ -f "$ZYNTHIAN_DIR/venv/bin/activate" ]; then
+	source "$ZYNTHIAN_DIR/venv/bin/activate"
+else
+	echo "WARNING: Can't load python virtual environment! => $ZYNTHIAN_DIR/venv/bin/activate"
+	echo "This is expected early in the install process"
+fi
 
 #------------------------------------------------------------------------------
 
