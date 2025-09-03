@@ -22,6 +22,14 @@
 # 
 #******************************************************************************
 
+set -e #exit on error, so get it right!!!!!
+
+set -x #enable command tracing
+
+echogreen() {
+	echo -e "\e[32m" $1 "\e[0m"
+}
+
 #------------------------------------------------------------------------------
 # Set default password & enable ssh on first boot
 #------------------------------------------------------------------------------
@@ -142,7 +150,7 @@ apt-get -q -y install avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprog
 cpufrequtils
 
 echogreen "apt number 2- Xdisplay stuff"
-apy-get -q -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri \
+apt-get -q -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri \
 tigervnc-standalone-server xfwm4 xfce4-panel xdotool shiki-colors-xfwm-theme \
 fonts-freefont-ttf x11vnc xserver-xorg-input-evdev
 #TODO => Configure xfwm to use shiki-colors theme in VNC
