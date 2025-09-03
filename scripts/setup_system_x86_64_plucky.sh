@@ -120,7 +120,7 @@ sudo dpkg -i kxstudio-repos_11.2.0_all.deb
 
 apt-get -q -y update
 apt-get -q -y full-upgrade
-#-# apt-get -q -y autoremove
+apt-get -q -y autoremove
 
 #------------------------------------------------
 # Install Required Packages
@@ -128,15 +128,38 @@ apt-get -q -y full-upgrade
 
 # System
 apt-get -q -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile bluez
-apt-get -q -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs \
-xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
-xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
-firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
-shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev network-manager \
-lsb-release
-#firmware-ralink 
 
+# Streamline the installation apts
+#-#apt-get -q -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs \
+#-#xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
+#-#xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
+#-#firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
+#-#shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev network-manager \
+#-#lsb-release
+#firmware-ralink 
+echogreen "apt number 1- Base System"
+apt-get -q -y install avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs lsb-release \
+cpufrequtils
+
+echogreen "apt number 2- Xdisplay stuff"
+apy-get -q -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri \
+tigervnc-standalone-server xfwm4 xfce4-panel xdotool shiki-colors-xfwm-theme \
+fonts-freefont-ttf x11vnc xserver-xorg-input-evdev
 #TODO => Configure xfwm to use shiki-colors theme in VNC
+
+echogreen "apt number 3- Network Base"
+apt-get -q -y  install wpasupplicant
+apt-get -q -y  install wireless-tools
+apt-get -q -y  install iw
+apt-get -q -y  install dnsmasq
+apt-get -q -y  install network-manager
+
+echogreen "apt number 4- Firmware and non-free stuff"
+#Do these one at a time to catch failures
+apt-get -q -y install firmware-misc-nonfree 
+apt-get -q -y install firmware-brcm80211 
+apt-get -q -y install firmware-realtek 
+apt-get -q -y install atmel-firmware
 
 # qjackctl install below requieres jackd2, instll here and bypass the prompt for realtime
 echogreen "jackd2 install"
