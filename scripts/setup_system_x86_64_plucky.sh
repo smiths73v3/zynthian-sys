@@ -109,7 +109,10 @@ apt-get -q -y update -oAcquire::AllowInsecureRepositories=true
 apt-get -q -y --allow-unauthenticated  install deb-multimedia-keyring
 
 # KXStudio
-wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.2.0_all.deb
+if [ ! -f kxstudio-repos_11.2.0_all.deb ]; then
+	echogreen "Downloading kxstudio-repos_11.2.0_all.deb"
+	wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.2.0_all.deb
+fi
 sudo dpkg -i kxstudio-repos_11.2.0_all.deb
 #-# Leave this around so we know for sure, and can reinstall if needed
 #-#rm -f kxstudio-repos_11.2.0_all.deb
@@ -158,7 +161,7 @@ fonts-freefont-ttf x11vnc xserver-xorg-input-evdev
 echogreen "apt number 3- Network Base"
 #-# not available #-# apt-get -q -y  install dhcpcd-dbus
 apt-get -q -y  install wpasupplicant
-apt-get -q -y  install wireless-tools
+#-# not available #-# apt-get -q -y  install wireless-tools
 apt-get -q -y  install iw
 apt-get -q -y  install dnsmasq
 apt-get -q -y  install network-manager
