@@ -154,8 +154,8 @@ cpufrequtils
 
 echogreen "apt number 2- Xdisplay stuff"
 apt-get -q -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri \
-tigervnc-standalone-server xfwm4 xfce4-panel xdotool shiki-colors-xfwm-theme \
-fonts-freefont-ttf x11vnc xserver-xorg-input-evdev
+tigervnc-standalone-server xfwm4 xfce4-panel xdotool shiki-colors-xfwm-theme imagemagick xterm \
+fonts-freefont-ttf x11vnc xserver-xorg-input-evdev xfce4-terminal tigervnc-tools xloadimage 
 #TODO => Configure xfwm to use shiki-colors theme in VNC
 
 echogreen "apt number 3- Network Base"
@@ -182,9 +182,11 @@ echogreen "jackd2 install done"
 
 # CLI Tools
 apt-get -q -y install psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
-fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi ffmpeg qjackctl mediainfo \
-xterm gpiod xfce4-terminal tigervnc-tools less rsync 
+fbi scrot  fbcat abcmidi gpiod less rsync 
 #  qmidinet
+
+# Media Tools
+apt-get -q -y install mpg123 mplayer ffmpeg qjackctl mediainfo
 
 #------------------------------------------------
 # Development Environment
