@@ -90,8 +90,8 @@ apt-get -q -y update --allow-releaseinfo-change
 apt-get -q -y full-upgrade
 
 # Install required dependencies if needed
-apt-get -q -y install apt-utils apt-transport-https sudo software-properties-common parted dirmngr gpgv wget ssh \
-gpg-agent
+apt-get -q -y install apt-utils apt-transport-https sudo software-properties-common
+apt-get -q -y install parted dirmngr gpgv wget ssh gpg-agent
 
 # Update Firmware
 #-#if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
@@ -149,13 +149,12 @@ apt-get -q -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfi
 #-#lsb-release
 #firmware-ralink 
 echogreen "apt number 1- Base System"
-apt-get -q -y install avahi-daemon usbutils udisks2 udevil exfatprogs lsb-release \
-cpufrequtils
+apt-get -q -y install avahi-daemon usbutils udisks2 udevil exfatprogs lsb-release cpufrequtils
 
 echogreen "apt number 2- Xdisplay stuff"
 apt-get -q -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri \
-tigervnc-standalone-server xfwm4 xfce4-panel xdotool shiki-colors-xfwm-theme imagemagick xterm \
-fonts-freefont-ttf x11vnc xserver-xorg-input-evdev xfce4-terminal tigervnc-tools xloadimage 
+ tigervnc-standalone-server xfwm4 xfce4-panel xdotool shiki-colors-xfwm-theme imagemagick xterm \
+ fonts-freefont-ttf x11vnc xserver-xorg-input-evdev xfce4-terminal tigervnc-tools xloadimage 
 #TODO => Configure xfwm to use shiki-colors theme in VNC
 
 echogreen "apt number 3- Network Base"
@@ -182,11 +181,12 @@ echogreen "jackd2 install done"
 
 # CLI Tools
 apt-get -q -y install psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
-fbi scrot  fbcat abcmidi gpiod less rsync 
+ fbi scrot  fbcat abcmidi gpiod less rsync 
 #  qmidinet
 
 # Media Tools
-apt-get -q -y install mpg123 mplayer ffmpeg qjackctl mediainfo
+apt-get -q -y install mpg123 qjackctl mediainfo
+apt-get -q -y install mplayer ffmpeg
 
 #------------------------------------------------
 # Development Environment
@@ -206,23 +206,27 @@ sh -c 'echo "options snd-intel-dspcfg dsp_driver=1" >> /etc/modprobe.d/inteldsp.
 
 
 # Libraries
+# AV Libraries => WARNING It should be reviewed on every new debian version!! (try not to specify exact versions)
+apt-get -q -y --no-install-recommends install libavcodec59 libavformat59 libavutil57
+
+# Libraries Continued
 # AV Libraries => WARNING It should be reviewed on every new debian version!!
 apt-get -q -y --no-install-recommends install libx11-dev libx11-xcb-dev libxcb-util-dev libxkbcommon-dev \
-libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-headers libpango1.0-dev \
-libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
-libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid jack-midi-clock midisport-firmware libffi-dev \
-fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
-libglibmm-2.4-dev libeigen3-dev libsamplerate-dev libarmadillo-dev libreadline-dev ttf-bitstream-vera \
-lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev \
-libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
-libfreetype6-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module '^libxcb.*-dev' \
-libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
-libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev libxrender-dev librubberband-dev \
-libavcodec59 libavformat59 libavutil57 libavformat-dev libavcodec-dev libgpiod-dev libganv-dev \
-libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
-libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
-libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
-libclthreads-dev libclxclient-dev 
+ libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-headers libpango1.0-dev \
+ libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
+ libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid jack-midi-clock midisport-firmware libffi-dev \
+ fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
+ libglibmm-2.4-dev libeigen3-dev libsamplerate-dev libarmadillo-dev libreadline-dev ttf-bitstream-vera \
+ lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev \
+ libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
+ libfreetype6-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module '^libxcb.*-dev' \
+ libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
+ libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev libxrender-dev librubberband-dev \
+ libavformat-dev libavcodec-dev libgpiod-dev libganv-dev \
+ libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
+ libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
+ libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
+ libclthreads-dev libclxclient-dev 
 
 apt-get -q -y --no-install-recommends libltc11
 
@@ -238,8 +242,8 @@ apt-get -q -y libasound2-data
 
 # Tools
 apt-get -q -y --no-install-recommends install build-essential git swig pkg-config autoconf automake premake4 \
-subversion gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake gobjc++ \
-ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli docutils-common faust
+ subversion gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake gobjc++ \
+ ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli docutils-common faust
 
 #needed when building lv2 plugins from source
 apt-get -q -y --install-recommends clang 
@@ -251,9 +255,9 @@ apt-get -q -y --install-recommends clang
 
 # Python3
 apt-get -q -y install python3 python3-venv python3-dev python3-pip cython3 python3-cffi 2to3 python3-tk python3-dbus python3-mpmath \
-python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
-python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
-python3-mutagen python3-pam python3-bcrypt
+ python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
+ python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
+ python3-mutagen python3-pam python3-bcrypt
 
 apt-get -q -y install python3-alsaaudio python3-pyalsa
 
@@ -348,8 +352,8 @@ source "$ZYNTHIAN_DIR/venv/bin/activate"
 
 pip3 install --upgrade pip
 pip3 install JACK-Client alsa-midi oyaml adafruit-circuitpython-neopixel-spi pyrubberband ffmpeg-python Levenshtein \
-sox meson ninja abletonparsing hwmon vcgencmd \
-tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js
+ sox meson ninja abletonparsing hwmon vcgencmd \
+ tornado tornadostreamform websocket-client tornado_xstatic terminado xstatic XStatic_term.js
 
 pip3 install tkinterweb
 
@@ -609,15 +613,16 @@ $ZYNTHIAN_RECIPE_DIR/install_aidax.sh
 
 # Install Pure Data stuff
 apt-get -q -y install puredata puredata-core puredata-utils puredata-import python3-yaml \
-pd-lua pd-moonlib pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-bassemu pd-readanysf pd-pddp \
-pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd \
-pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-earplug pd-wiimote pd-pmpd pd-motex \
-pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
-pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
+ pd-lua pd-moonlib pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-bassemu pd-readanysf pd-pddp \
+ pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd \
+ pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-earplug pd-wiimote pd-pmpd pd-motex \
+ pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
+ pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
+
 apt-get -q -y install pd-ambix pd-autopreset pd-cmos pd-creb pd-deken pd-deken-apt pd-extendedview pd-flext-dev pd-flext-doc pd-gil \
-pd-hexloader pd-iem pd-jsusfx pd-kollabs pd-lib-builder pd-log pd-mediasettings pd-mrpeach-net pd-nusmuk pd-pan \
-pd-pduino pd-pool pd-puremapping pd-purest-json pd-rtclib pd-slip pd-syslog pd-tclpd pd-testtools pd-unauthorized \
-pd-upp pd-xbee pd-xsample
+ pd-hexloader pd-iem pd-jsusfx pd-kollabs pd-lib-builder pd-log pd-mediasettings pd-mrpeach-net pd-nusmuk pd-pan \
+ pd-pduino pd-pool pd-puremapping pd-purest-json pd-rtclib pd-slip pd-syslog pd-tclpd pd-testtools pd-unauthorized \
+ pd-upp pd-xbee pd-xsample
 
 mkdir /root/Pd
 mkdir /root/Pd/externals
