@@ -110,7 +110,7 @@ apt-get -q -y install parted dirmngr gpgv wget ssh gpg-agent
 #------------------------------------------------
 
 # deb-multimedia repo
-echo "deb https://www.deb-multimedia.org bookworm main non-free" >> /etc/apt/sources.list
+echo "deb https://www.deb-multimedia.org trixie main non-free" >> /etc/apt/sources.list
 apt-get -q -y update -oAcquire::AllowInsecureRepositories=true
 apt-get -q -y --allow-unauthenticated  install deb-multimedia-keyring
 
@@ -578,10 +578,10 @@ $ZYNTHIAN_RECIPE_DIR/install_filebrowser.sh
 echogreen "Build & Install Synthesis Software"
 if [ 0 ]; then
 
-# Install ZynAddSubFX => from Bookworm repository instead of KXStudio
+# Install ZynAddSubFX => from trixie repository instead of KXStudio
 #$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
-apt-get -q -y install -t bookworm zynaddsubfx
-apt-get -q -y install -t bookworm zynaddsubfx-lv2
+apt-get -q -y install -t trixie zynaddsubfx
+apt-get -q -y install -t trixie zynaddsubfx-lv2
 apt-mark hold zynaddsubfx
 apt-mark hold zynaddsubfx-lv2
 
