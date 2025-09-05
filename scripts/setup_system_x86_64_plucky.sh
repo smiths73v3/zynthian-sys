@@ -30,6 +30,11 @@ echogreen() {
 	echo -e "\e[32m" $1 "\e[0m"
 }
 
+apt_list ) {
+	echogreen "apt list number ${1}"
+	apt list --installed ~/apt_installed_${1}.txt
+}
+
 #------------------------------------------------------------------------------
 # Set default password & enable ssh on first boot
 #------------------------------------------------------------------------------
@@ -48,9 +53,8 @@ alias mkdir='mkdir -p'
 #------------------------------------------------------------------------------
 # Load basic tools
 #------------------------------------------------------------------------------
-apt_list_count=1
-apt list --installed > apt_installed_${apt_list_count}.txt
 apt-get update
+apt_list 1
 apt-get -q -y install apt-utils git parted screen unzip zip
 
 #------------------------------------------------------------------------------
@@ -142,8 +146,7 @@ apt-get -q -y autoremove
 # System
 apt-get -q -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile bluez
 
-apt_list_count=2
-apt list --installed > apt_installed_${apt_list_count}.txt
+apt_list 2
 
 # Streamline the installation apts
 #-#apt-get -q -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs \
@@ -183,28 +186,24 @@ apt-get -q -y install atmel-firmware
 apt-get -q -y install psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
  fbi scrot  fbcat abcmidi gpiod less rsync 
 
-apt_list_count=3
-apt list --installed > apt_installed_${apt_list_count}.txt
+apt_list 3
 
 # qjackctl install below requieres jackd2, instll here and bypass the prompt for realtime
 echogreen "jackd2 install"
 apt-get install -q -y --install-recommends jackd2
 echogreen "jackd2 install done"
 
-apt_list_count=4
-apt list --installed > apt_installed_${apt_list_count}.txt
+apt_list 4
 
 # Media Tools
 apt-get -q -y --install-recommends install mpg123 qjackctl mediainfo
 
-apt_list_count=5
-apt list --installed > apt_installed_${apt_list_count}.txt
+apt_list 5
 
 # Install mplayer and ffmpeg to bring in most of the required libraries
 apt-get -q -y --install-recommends install mplayer ffmpeg
 
-apt_list_count=6
-apt list --installed > apt_installed_${apt_list_count}.txt
+apt_list 6
 
 #------------------------------------------------
 # Development Environment
@@ -233,8 +232,7 @@ apt-get -q -y --no-install-recommends libjack-jackd2-dev a2jmidid jack-midi-cloc
 apt-get -q -y --no-install-recommends libmpg123-0 libmp3lame0 libmpg123-dev libvorbis-dev libogg-dev
 apt-get -q -y --no-install-recommends libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev
 
-apt_list_count=7
-apt list --installed > apt_installed_${apt_list_count}.txt
+apt_list 7
 
 # Libraries Continued
 # AV Libraries => WARNING It should be reviewed on every new debian version!!
@@ -254,8 +252,7 @@ apt-get -q -y --no-install-recommends install libx11-dev libx11-xcb-dev libxcb-u
  libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
  libclthreads-dev libclxclient-dev 
 
-apt_list_count=8
-apt list --installed > apt_installed_${apt_list_count}.txt
+apt_list 8
 
 apt-get -q -y --no-install-recommends libltc11
 
