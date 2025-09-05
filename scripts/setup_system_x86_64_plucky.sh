@@ -48,6 +48,8 @@ alias mkdir='mkdir -p'
 #------------------------------------------------------------------------------
 # Load basic tools
 #------------------------------------------------------------------------------
+apt_list_count=1
+apt list --installed > apt_installed_${apt_list_count}.txt
 apt-get update
 apt-get -q -y install apt-utils git parted screen unzip zip
 
@@ -87,7 +89,7 @@ source "zynthian_envars_extended.sh"
 
 # Update System
 apt-get -q -y update --allow-releaseinfo-change
-apt-get -q -y full-upgrade
+#-20250905-# apt-get -q -y full-upgrade
 
 # Install required dependencies if needed
 apt-get -q -y install apt-utils apt-transport-https sudo software-properties-common
@@ -130,7 +132,7 @@ sudo dpkg -i kxstudio-repos_11.2.0_all.deb
 #curl -fsSL $sfizz_url_base/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_sfztools_sfizz.gpg > /dev/null
 
 apt-get -q -y update
-apt-get -q -y full-upgrade
+#-20250905-# apt-get -q -y full-upgrade
 apt-get -q -y autoremove
 
 #------------------------------------------------
@@ -139,6 +141,9 @@ apt-get -q -y autoremove
 
 # System
 apt-get -q -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile bluez
+
+apt_list_count=2
+apt list --installed > apt_installed_${apt_list_count}.txt
 
 # Streamline the installation apts
 #-#apt-get -q -y install systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs \
@@ -178,16 +183,28 @@ apt-get -q -y install atmel-firmware
 apt-get -q -y install psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
  fbi scrot  fbcat abcmidi gpiod less rsync 
 
+apt_list_count=3
+apt list --installed > apt_installed_${apt_list_count}.txt
+
 # qjackctl install below requieres jackd2, instll here and bypass the prompt for realtime
 echogreen "jackd2 install"
 apt-get install -q -y --install-recommends jackd2
 echogreen "jackd2 install done"
 
+apt_list_count=4
+apt list --installed > apt_installed_${apt_list_count}.txt
+
 # Media Tools
 apt-get -q -y --install-recommends install mpg123 qjackctl mediainfo
 
+apt_list_count=5
+apt list --installed > apt_installed_${apt_list_count}.txt
+
 # Install mplayer and ffmpeg to bring in most of the required libraries
 apt-get -q -y --install-recommends install mplayer ffmpeg
+
+apt_list_count=6
+apt list --installed > apt_installed_${apt_list_count}.txt
 
 #------------------------------------------------
 # Development Environment
@@ -216,6 +233,9 @@ apt-get -q -y --no-install-recommends libjack-jackd2-dev a2jmidid jack-midi-cloc
 apt-get -q -y --no-install-recommends libmpg123-0 libmp3lame0 libmpg123-dev libvorbis-dev libogg-dev
 apt-get -q -y --no-install-recommends libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev
 
+apt_list_count=7
+apt list --installed > apt_installed_${apt_list_count}.txt
+
 # Libraries Continued
 # AV Libraries => WARNING It should be reviewed on every new debian version!!
 apt-get -q -y --no-install-recommends install libx11-dev libx11-xcb-dev libxcb-util-dev libxkbcommon-dev \
@@ -233,6 +253,9 @@ apt-get -q -y --no-install-recommends install libx11-dev libx11-xcb-dev libxcb-u
  libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
  libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
  libclthreads-dev libclxclient-dev 
+
+apt_list_count=8
+apt list --installed > apt_installed_${apt_list_count}.txt
 
 apt-get -q -y --no-install-recommends libltc11
 
