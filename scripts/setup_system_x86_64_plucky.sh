@@ -32,7 +32,7 @@ echogreen() {
 
 apt_list () {
 	echogreen "apt list number ${1}"
-	apt list --installed ~/apt_installed_${1}.txt
+	apt list --installed > ~/apt_installed_${1}.txt
 }
 
 #------------------------------------------------------------------------------
