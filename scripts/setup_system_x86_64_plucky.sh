@@ -30,7 +30,7 @@ echogreen() {
 	echo -e "\e[32m" $1 "\e[0m"
 }
 
-apt_list ) {
+apt_list () {
 	echogreen "apt list number ${1}"
 	apt list --installed ~/apt_installed_${1}.txt
 }
