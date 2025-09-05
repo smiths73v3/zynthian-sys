@@ -174,19 +174,20 @@ echogreen "apt number 4- Firmware and non-free stuff"
 #-# especially if we got here. It may have been wired, but unlikely
 apt-get -q -y install atmel-firmware
 
-# qjackctl install below requieres jackd2, instll here and bypass the prompt for realtime
-echogreen "jackd2 install"
-apt-get install -q -y jackd2
-echogreen "jackd2 install done"
-
 # CLI Tools
 apt-get -q -y install psmisc tree joe nano vim p7zip-full i2c-tools ddcutil evtest libts-bin \
  fbi scrot  fbcat abcmidi gpiod less rsync 
-#  qmidinet
+
+# qjackctl install below requieres jackd2, instll here and bypass the prompt for realtime
+echogreen "jackd2 install"
+apt-get install -q -y --install-recommends jackd2
+echogreen "jackd2 install done"
 
 # Media Tools
-apt-get -q -y install mpg123 qjackctl mediainfo
-apt-get -q -y install mplayer ffmpeg
+apt-get -q -y --install-recommends install mpg123 qjackctl mediainfo
+
+# Install mplayer and ffmpeg to bring in most of the required libraries
+apt-get -q -y --install-recommends install mplayer ffmpeg
 
 #------------------------------------------------
 # Development Environment
@@ -205,26 +206,31 @@ apt-get -q -y install firmware-intel-sound
 sh -c 'echo "options snd-intel-dspcfg dsp_driver=1" >> /etc/modprobe.d/inteldsp.conf'
 
 
+ # --install-recommends 
+
 # Libraries
 # AV Libraries => WARNING It should be reviewed on every new debian version!! (try not to specify exact versions)
-apt-get -q -y --no-install-recommends install libavcodec59 libavformat59 libavutil57
+# apt-get -q -y --no-install-recommends install libavcodec59 libavformat59 libavutil57
+
+apt-get -q -y --no-install-recommends libjack-jackd2-dev a2jmidid jack-midi-clock midisport-firmware 
+apt-get -q -y --no-install-recommends libmpg123-0 libmp3lame0 libmpg123-dev libvorbis-dev libogg-dev
+apt-get -q -y --no-install-recommends libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev
 
 # Libraries Continued
 # AV Libraries => WARNING It should be reviewed on every new debian version!!
 apt-get -q -y --no-install-recommends install libx11-dev libx11-xcb-dev libxcb-util-dev libxkbcommon-dev \
  libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-headers libpango1.0-dev \
  libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
- libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid jack-midi-clock midisport-firmware libffi-dev \
+ libasound2-dev dbus-x11 libffi-dev \
  fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
  libglibmm-2.4-dev libeigen3-dev libsamplerate-dev libarmadillo-dev libreadline-dev ttf-bitstream-vera \
  lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev \
  libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
  libfreetype6-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module '^libxcb.*-dev' \
  libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
- libxkbcommon-x11-dev libssl-dev libmpg123-0 libmp3lame0 libqt5svg5-dev libxrender-dev librubberband-dev \
+ libxkbcommon-x11-dev libssl-dev libqt5svg5-dev libxrender-dev librubberband-dev \
  libavformat-dev libavcodec-dev libgpiod-dev libganv-dev \
  libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
- libmpg123-dev libvorbis-dev libogg-dev libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev \
  libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
  libclthreads-dev libclxclient-dev 
 
