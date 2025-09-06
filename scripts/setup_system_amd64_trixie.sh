@@ -182,6 +182,8 @@ echogreen "apt number 4- Firmware and non-free stuff"
 #-# not available #-# apt-get -q -y install firmware-realtek 
 #-# Really, the base ubuntu should have installed the drivers needed for wifi
 #-# especially if we got here. It may have been wired, but unlikely
+apt-get -q -y install firmware-linux-free
+apt-get -q -y install firmware-linux-nonfree
 apt-get -q -y install atmel-firmware
 
 # CLI Tools
@@ -214,7 +216,8 @@ apt_list 6
 apt-get -q -y --no-install-recommends install alsa-utils
 apt-get -q -y --no-install-recommends install alsa-tools
 apt-get -q -y --no-install-recommends install alsa-topology-conf
-apt-get -q -y --no-install-recommends install alsa-firmware
+# The alsa-firmware package is from kxstudio, but it won't install here....
+#apt-get -q -y --no-install-recommends install alsa-firmware
 
 
 #------------------------------------------------
