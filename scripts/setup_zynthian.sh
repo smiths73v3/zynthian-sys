@@ -62,6 +62,10 @@ else
 		apt-get update
 		apt-get -q -y install apt-utils git parted screen
 		git clone -b NUC https://github.com/smiths73v3/zynthian-sys.git
+	else
+		cd zynthian-sys
+		git pull
+		cd
 	fi
 	cd zynthian-sys/scripts
 	if [ "$IS_X86_64" = "true" ]; then
