@@ -273,7 +273,7 @@ apt-get -q -y --no-install-recommends install libltc11
 apt-get -q -y --no-install-recommends install libsndfile1-dev
 
 #-# From zynthian repo, but not available for amd64
-apt-get -q -y libasound2-data
+apt-get -q -y install libasound2-data
 
 # Missed libs from previous OS versions:
 # Removed from bookworm: libavresample4
