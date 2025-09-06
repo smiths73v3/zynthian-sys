@@ -292,10 +292,12 @@ apt-get -q -y --install-recommends install clang
 #libgd2-xpm-dev
 
 # Python3
-apt-get -q -y install python3 python3-venv python3-dev python3-pip cython3 python3-cffi 2to3 python3-tk python3-dbus python3-mpmath \
+apt-get -q -y install python3 python3-venv python3-dev python3-pip cython3 python3-cffi python3-tk python3-dbus python3-mpmath \
  python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy python3-evdev python3-usb \
  python3-soundfile python3-psutil python3-pexpect python3-jsonpickle python3-requests python3-mido python3-rtmidi \
  python3-mutagen python3-pam python3-bcrypt
+
+#-# # Debian 13 removed 2to3 hopefully we are not still trying to update from python2?
 
 apt-get -q -y install python3-alsaaudio python3-pyalsa
 
