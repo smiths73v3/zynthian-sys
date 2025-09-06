@@ -49,7 +49,8 @@ apt_list () {
 # Load Environment Variables for the installation
 #------------------------------------------------------------------------------
 DEBIAN_FRONTEND=noninteractive 
-alias mkdir='mkdir -p'
+alias mkdir_p='mkdir -p'
+
 #------------------------------------------------------------------------------
 # Load basic tools
 #------------------------------------------------------------------------------
@@ -310,9 +311,9 @@ apt-get -q -y install python3-alsaaudio python3-pyalsa
 #------------------------------------------------
 
 # Create needed directories
-mkdir "$ZYNTHIAN_DIR"
-mkdir "$ZYNTHIAN_CONFIG_DIR"
-mkdir "$ZYNTHIAN_SW_DIR"
+mkdir_p "$ZYNTHIAN_DIR"
+mkdir_p "$ZYNTHIAN_CONFIG_DIR"
+mkdir_p "$ZYNTHIAN_SW_DIR"
 
 # Zynthian System Scripts and Config files
 cd "$ZYNTHIAN_DIR"
@@ -345,39 +346,39 @@ cd "$ZYNTHIAN_DIR"
 git clone -b "${ZYNTHIAN_WEBCONF_BRANCH}" "${ZYNTHIAN_WEBCONF_REPO}"
 
 # Create needed directories
-#mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
-#mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
-mkdir "$ZYNTHIAN_MY_DATA_DIR"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/banks"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/presets"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/generative"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/sysex"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/patterns"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/tracks"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/sequences"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/zynseq/scenes"
-mkdir "$ZYNTHIAN_PLUGINS_DIR"
-mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
+#mkdir_p "$ZYNTHIAN_DATA_DIR/soundfonts"
+#mkdir_p "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
+mkdir_p "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
+mkdir_p "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/presets"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/banks"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/presets"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/presets/puredata"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/generative"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/presets/sysex"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/soundfonts"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/snapshots"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/capture"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/zynseq"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/zynseq/patterns"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/zynseq/tracks"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/zynseq/sequences"
+mkdir_p "$ZYNTHIAN_MY_DATA_DIR/zynseq/scenes"
+mkdir_p "$ZYNTHIAN_PLUGINS_DIR"
+mkdir_p "$ZYNTHIAN_PLUGINS_DIR/lv2"
 
-mkdir "/boot/firmware/"
+mkdir_p "/boot/firmware/"
 
 # Copy default snapshots
 cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000
@@ -409,7 +410,7 @@ echo "tmpfs  /var/tmp  tmpfs  defaults,noatime,nosuid,nodev,size=200M   0  0" >>
 
 # Fix timeout in network initialization
 if [ ! -d "/etc/systemd/system/networking.service.d" ]; then
-	mkdir "/etc/systemd/system/networking.service.d"
+	mkdir_p "/etc/systemd/system/networking.service.d"
 	echo -e "[Service]\nTimeoutStartSec=1\n" > "/etc/systemd/system/networking.service.d/reduce-timeout.conf"
 fi
 
@@ -421,7 +422,7 @@ fi
 
 # VNC password
 if [ ! -d "/root/.vnc/" ]; then
-	mkdir "/root/.vnc/"
+	mkdir_p "/root/.vnc/"
 fi
 echo "opensynth" | vncpasswd -f > /root/.vnc/passwd
 chmod go-r /root/.vnc/passwd
@@ -630,7 +631,7 @@ apt-get -q -y install linuxsampler gigtools
 $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 # Setup user config directories
 cd $ZYNTHIAN_CONFIG_DIR
-mkdir setbfree
+mkdir_psetbfree
 ln -s /usr/local/share/setBfree/cfg/default.cfg ./setbfree
 cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/zynthian.cfg
 
@@ -664,8 +665,8 @@ apt-get -q -y install pd-ambix pd-autopreset pd-cmos pd-creb pd-deken pd-deken-a
  pd-pduino pd-pool pd-puremapping pd-purest-json pd-rtclib pd-slip pd-syslog pd-tclpd pd-testtools pd-unauthorized \
  pd-upp pd-xbee pd-xsample
 
-mkdir /root/Pd
-mkdir /root/Pd/externals
+mkdir_p/root/Pd
+mkdir_p/root/Pd/externals
 
 #------------------------------------------------
 # Install MOD stuff
@@ -714,7 +715,7 @@ fi
 
 # Create flags to avoid running unneeded recipes.update when updating zynthian software
 #if [ ! -d "$ZYNTHIAN_CONFIG_DIR/updates" ]; then
-#	mkdir "$ZYNTHIAN_CONFIG_DIR/updates"
+#	mkdir_p "$ZYNTHIAN_CONFIG_DIR/updates"
 #fi
 
 # Run configuration script before ending
