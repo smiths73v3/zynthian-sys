@@ -234,9 +234,9 @@ sh -c 'echo "options snd-intel-dspcfg dsp_driver=1" >> /etc/modprobe.d/inteldsp.
 # AV Libraries => WARNING It should be reviewed on every new debian version!! (try not to specify exact versions)
 # apt-get -q -y --no-install-recommends install libavcodec59 libavformat59 libavutil57
 
-apt-get -q -y --no-install-recommends libjack-jackd2-dev a2jmidid jack-midi-clock midisport-firmware 
-apt-get -q -y --no-install-recommends libmpg123-0 libmp3lame0 libmpg123-dev libvorbis-dev libogg-dev
-apt-get -q -y --no-install-recommends libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev
+apt-get -q -y --no-install-recommends install libjack-jackd2-dev a2jmidid jack-midi-clock midisport-firmware 
+apt-get -q -y --no-install-recommends install libmpg123-0 libmp3lame0 libmpg123-dev libvorbis-dev libogg-dev
+apt-get -q -y --no-install-recommends install libopus-dev libpulse-dev libpulse-mainloop-glib0 libsndio-dev
 
 apt_list 7
 
