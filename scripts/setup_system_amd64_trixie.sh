@@ -35,6 +35,10 @@ apt_list () {
 	apt list --installed > ~/apt_installed_${1}.txt
 }
 
+mkdir_p () {
+	mkdir -p $1
+}
+
 #------------------------------------------------------------------------------
 # Set default password & enable ssh on first boot
 #------------------------------------------------------------------------------
@@ -49,7 +53,6 @@ apt_list () {
 # Load Environment Variables for the installation
 #------------------------------------------------------------------------------
 DEBIAN_FRONTEND=noninteractive 
-alias mkdir_p='mkdir -p'
 
 #------------------------------------------------------------------------------
 # Load basic tools
@@ -631,7 +634,7 @@ apt-get -q -y install linuxsampler gigtools
 $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 # Setup user config directories
 cd $ZYNTHIAN_CONFIG_DIR
-mkdir_psetbfree
+mkdir_p setbfree
 ln -s /usr/local/share/setBfree/cfg/default.cfg ./setbfree
 cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/zynthian.cfg
 
@@ -665,8 +668,8 @@ apt-get -q -y install pd-ambix pd-autopreset pd-cmos pd-creb pd-deken pd-deken-a
  pd-pduino pd-pool pd-puremapping pd-purest-json pd-rtclib pd-slip pd-syslog pd-tclpd pd-testtools pd-unauthorized \
  pd-upp pd-xbee pd-xsample
 
-mkdir_p/root/Pd
-mkdir_p/root/Pd/externals
+mkdir_p /root/Pd
+mkdir_p /root/Pd/externals
 
 #------------------------------------------------
 # Install MOD stuff
