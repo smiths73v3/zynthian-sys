@@ -71,6 +71,7 @@ fi
 echo ""
 echo "----------------------------------------------"
 echo "Linux Version: $LINUX_OS_VERSION"
+echo "Description: $(lsb_release -sd)"
 echo "Kernel Version: $LINUX_KERNEL_VERSION"
 echo "ZynthianOS Version: $ZYNTHIAN_OS_VERSION"
 echo "Virtualization: $VIRTUALIZATION"

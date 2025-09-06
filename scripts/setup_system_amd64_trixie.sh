@@ -459,9 +459,9 @@ echo "opensynth" | vncpasswd -f > /root/.vnc/passwd
 chmod go-r /root/.vnc/passwd
 
 # Delete problematic file from X11 config (RPi3??)
-if [ -f "/usr/share/X11/xorg.conf.d/20-noglamor.conf" ]; then
-	rm -f /usr/share/X11/xorg.conf.d/20-noglamor.conf
-fi
+#-#if [ -f "/usr/share/X11/xorg.conf.d/20-noglamor.conf" ]; then
+#-#	rm -f /usr/share/X11/xorg.conf.d/20-noglamor.conf
+#-#fi
 
 # Setup loading of Zynthian Environment variables ...
 echo "source $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars_extended.sh > /dev/null 2>&1" >> /root/.bashrc
@@ -485,7 +485,7 @@ echo "ZynthianOS ORAM-$ZYNTHIANOS_VERSION" > $ZYNTHIAN_DIR/build_info.txt
 echo "" >> $ZYNTHIAN_DIR/build_info.txt
 echo "Timestamp: ${BUILD_DATE}"  >> $ZYNTHIAN_DIR/build_info.txt
 echo "" >> $ZYNTHIAN_DIR/build_info.txt
-echo "Built from Ubuntu Plucky ($MACHINE_HW_NAME)" >> $ZYNTHIAN_DIR/build_info.txt
+echo "Built from $(lsb_release -sd)" >> $ZYNTHIAN_DIR/build_info.txt
 
 # Run configuration script
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
@@ -622,7 +622,8 @@ $ZYNTHIAN_RECIPE_DIR/install_filebrowser.sh
 #------------------------------------------------
 
 echogreen "Build & Install Synthesis Software"
-if [ 0 ]; then
+if [ 1 ]; then
+echogreen "Start Builds"
 
 # Install ZynAddSubFX => from trixie repository instead of KXStudio
 #$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
