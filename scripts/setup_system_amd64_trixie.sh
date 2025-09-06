@@ -210,10 +210,11 @@ apt_list 6
 #------------------------------------------------
 # Development Environment
 #------------------------------------------------
-#Dietpi, alsa install
+#Alsa install
 apt-get -q -y --no-install-recommends install alsa-utils
+apt-get -q -y --no-install-recommends install alsa-tools
 apt-get -q -y --no-install-recommends install alsa-topology-conf
-apt-get -q -y --no-install-recommends install alsa-firmware-loaders
+apt-get -q -y --no-install-recommends install alsa-firmware
 
 
 #------------------------------------------------
