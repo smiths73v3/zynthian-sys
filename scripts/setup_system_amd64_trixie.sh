@@ -96,7 +96,8 @@ apt-get -q -y update --allow-releaseinfo-change
 #-20250905-# apt-get -q -y full-upgrade
 
 # Install required dependencies if needed
-apt-get -q -y install apt-utils apt-transport-https sudo software-properties-common
+apt-get -q -y install apt-utils apt-transport-https sudo 
+#obsolete on Debian 13  software-properties-common
 apt-get -q -y install parted dirmngr gpgv wget ssh gpg-agent
 
 # Update Firmware
