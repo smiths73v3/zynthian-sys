@@ -407,8 +407,9 @@ mkdir_p "$ZYNTHIAN_MY_DATA_DIR/zynseq/scenes"
 mkdir_p "$ZYNTHIAN_PLUGINS_DIR"
 mkdir_p "$ZYNTHIAN_PLUGINS_DIR/lv2"
 
-# Don't need /boot/firmware on amd64
-#-# mkdir_p "/boot/firmware/"
+# Don't need /boot/firmware on amd64,
+# but it is used by some of the scripts to store state info.
+mkdir_p "/boot/firmware/"
 
 # Copy default snapshots
 cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000
@@ -499,7 +500,7 @@ systemctl daemon-reload
 #-#systemctl disable raspi-config
 systemctl disable cron
 systemctl disable dnsmasq
-systemctl disable dhcpcd
+#systemctl disable dhcpcd
 systemctl disable apt-daily.timer
 systemctl disable ModemManager
 systemctl disable glamor-test.service
@@ -512,9 +513,9 @@ systemctl enable devmon@root
 #systemctl mask packagekit
 #systemctl mask polkit
 #-#systemctl mask rpi-eeprom-update
-#dieetpi has dropbear, stop and disable it so openSSH works properly
-systemctl stop dropbear
-systemctl disable dropbear
+#dietpi has dropbear, stop and disable it so openSSH works properly
+#-#systemctl stop dropbear
+#-#systemctl disable dropbear
 
 # Zynthian specific systemd services
 systemctl enable jack2
