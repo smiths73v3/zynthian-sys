@@ -66,7 +66,7 @@ else
 	cd zynthian-sys/scripts
 	if [ "$IS_X86_64" = "true" ]; then
 		#./setup_system_nuc_dietpi_64bit_bookworm.sh
-		./setup_system_x86_64_plucky.sh
+		./setup_system_amd64_trixie.sh
 	else
 		./setup_system_raspiolite_64bit_bookworm.sh
 	fi
