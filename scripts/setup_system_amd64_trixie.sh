@@ -69,6 +69,7 @@ apt-get -q -y install lsb-release
 
 echogreen "Loading Zynthian Environment Variables"
 source "zynthian_envars_extended.sh"
+source "zynthian_envvars.sh"
 
 #------------------------------------------------
 # Set default config
@@ -342,7 +343,7 @@ if [ -d "${ZYNTHIAN_ZYNCODER_DIR}/.git" ]; then
 else
     git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
 fi
-./${ZYNTHIAN_ENCODER_REPO}/build.sh
+${ZYNTHIAN_ENCODER_DIR}/build.sh
 
 # Zynthian UI
 cd "$ZYNTHIAN_DIR"
