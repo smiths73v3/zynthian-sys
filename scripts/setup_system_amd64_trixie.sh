@@ -194,7 +194,7 @@ apt_list 3
 
 # qjackctl install below requieres jackd2, instll here and bypass the prompt for realtime
 echogreen "jackd2 install"
-apt-get install -q -y --install-recommends jackd2
+apt-get -q -y --install-recommends install jackd2
 echogreen "jackd2 install done"
 
 apt_list 4
@@ -262,11 +262,11 @@ apt-get -q -y --no-install-recommends install libx11-dev libx11-xcb-dev libxcb-u
 #- Here is some sort of debian git repo for ganv https://salsa.debian.org/multimedia-team/ganv
 
 #Debian trixie removed these lv2-c++-tools, these were recommended in place.
-apt-get -q -y --no-install-recommends lvtk-tools lvtk-static
+apt-get -q -y --no-install-recommends install lvtk-tools lvtk-static
 
 apt_list 8
 
-apt-get -q -y --no-install-recommends libltc11
+apt-get -q -y --no-install-recommends install libltc11
 
 #-# Debugging this missing package...
 #-# apt-get -y --no-install-recommends install libsndfile-zyndev
@@ -284,7 +284,7 @@ apt-get -q -y --no-install-recommends install build-essential git swig pkg-confi
  ruby rake xsltproc vorbis-tools zenity doxygen graphviz glslang-tools rubberband-cli docutils-common faust
 
 #needed when building lv2 plugins from source
-apt-get -q -y --install-recommends clang 
+apt-get -q -y --install-recommends install clang 
 
 # Missed tools from previous OS versions:
 #libjack-dev-session
