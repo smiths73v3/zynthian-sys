@@ -2,7 +2,7 @@
 #******************************************************************************
 # ZYNTHIAN PROJECT: Zynthian Setup Script
 # 
-# Setup zynthian software stack in a fresh raspios-lite-64 "bullseye" image
+# Setup zynthian software stack in a fresh Debian "trixie" image
 # 
 # Copyright (C) 2015-2023 Fernando Moyano <jofemodo@zynthian.org>
 #
@@ -320,7 +320,12 @@ mkdir_p "$ZYNTHIAN_SW_DIR"
 
 # Zynthian System Scripts and Config files
 cd "$ZYNTHIAN_DIR"
-git clone -b "${ZYNTHIAN_SYS_BRANCH}" "${ZYNTHIAN_SYS_REPO}"
+if [ -d "${ZYNTHIAN_SYS_DIR}/.git" ]; then
+	cd "${ZYNTHIAN_SYS_DIR}"
+	git pull
+else
+	git clone -b "${ZYNTHIAN_SYS_BRANCH}" "${ZYNTHIAN_SYS_REPO}"
+fi
 #-# For now, copy a default keybinding file. Ideally condition this on the hardware
 #-# and add to the zyngui library keybinging default 
 cp "$ZYNTHIAN_SYS_DIR/config/keybinding.json" "$ZYNTHIAN_CONFIG_DIR/keybinding.json"
@@ -331,22 +336,42 @@ cp "$ZYNTHIAN_SYS_DIR/config/keybinding.json" "$ZYNTHIAN_CONFIG_DIR/keybinding.j
 
 # Zyncoder library
 cd "$ZYNTHIAN_DIR"
-git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
-./zyncoder/build.sh
+if [ -d "${ZYNTHIAN_ZYNCODER_DIR}/.git" ]; then
+	cd "${ZYNTHIAN_ZYNCODER_DIR}"
+	git pull
+else
+    git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
+fi
+./${ZYNTHIAN_ENCODER_REPO}/build.sh
 
 # Zynthian UI
 cd "$ZYNTHIAN_DIR"
-git clone -b "${ZYNTHIAN_UI_BRANCH}" "${ZYNTHIAN_UI_REPO}"
+if [ -d "${ZYNTHIAN_UI_DIR}/.git" ]; then
+	cd "${ZYNTHIAN_UI_DIR}"
+	git pull
+else
+    git clone -b "${ZYNTHIAN_UI_BRANCH}" "${ZYNTHIAN_UI_REPO}"
+fi
 cd "$ZYNTHIAN_UI_DIR"
 find ./zynlibs -type f -name build.sh -exec {} \;
 
 # Zynthian Data
 cd "$ZYNTHIAN_DIR"
-git clone -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
+if [ -d "${ZYNTHIAN_DATA_DIR}/.git" ]; then
+	cd "${ZYNTHIAN_DATA_DIR}"
+	git pull
+else
+	git clone -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
+fi
 
 # Zynthian Webconf Tool
 cd "$ZYNTHIAN_DIR"
-git clone -b "${ZYNTHIAN_WEBCONF_BRANCH}" "${ZYNTHIAN_WEBCONF_REPO}"
+if [ -d "${ZYNTHIAN_WEBCONF_DIR}/.git" ]; then
+	cd "${ZYNTHIAN_WEBCONF_DIR}"
+	git pull
+else
+	git clone -b "${ZYNTHIAN_WEBCONF_BRANCH}" "${ZYNTHIAN_WEBCONF_REPO}"
+fi
 
 # Create needed directories
 #mkdir_p "$ZYNTHIAN_DATA_DIR/soundfonts"
@@ -381,7 +406,8 @@ mkdir_p "$ZYNTHIAN_MY_DATA_DIR/zynseq/scenes"
 mkdir_p "$ZYNTHIAN_PLUGINS_DIR"
 mkdir_p "$ZYNTHIAN_PLUGINS_DIR/lv2"
 
-mkdir_p "/boot/firmware/"
+# Don't need /boot/firmware on amd64
+#-# mkdir_p "/boot/firmware/"
 
 # Copy default snapshots
 cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000

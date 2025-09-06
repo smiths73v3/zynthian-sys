@@ -94,6 +94,8 @@ export ZYNTHIAN_AUBIONOTES_OPTIONS="-O complex -t 0.5 -s -88  -p yinfft -l 0.5"
 # Directory Paths
 export ZYNTHIAN_DIR="/zynthian"
 export ZYNTHIAN_CONFIG_DIR="$ZYNTHIAN_DIR/config"
+export ZYNTHIAN_ZYNCODER_DIR="$ZYNTHIAN_DIR/zyncoder"
+export ZYNTHIAN_WEBCONF_DIR="$ZYNTHIAN_DIR/zynthian-webconf"
 export ZYNTHIAN_SW_DIR="$ZYNTHIAN_DIR/zynthian-sw"
 export ZYNTHIAN_UI_DIR="$ZYNTHIAN_DIR/zynthian-ui"
 export ZYNTHIAN_SYS_DIR="$ZYNTHIAN_DIR/zynthian-sys"
