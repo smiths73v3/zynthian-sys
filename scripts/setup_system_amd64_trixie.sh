@@ -343,7 +343,7 @@ if [ -d "${ZYNTHIAN_ZYNCODER_DIR}/.git" ]; then
 else
     git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
 fi
-${ZYNTHIAN_ENCODER_DIR}/build.sh
+${ZYNTHIAN_ZYNCODER_DIR}/build.sh
 
 # Zynthian UI
 cd "$ZYNTHIAN_DIR"
