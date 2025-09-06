@@ -94,7 +94,10 @@ if [ -z "$RASPI" ]; then
 	    # Non-RPi hardware
 		#workaround for missing i2c-1 bus blindly used in some places
 		if [ ! -e "/dev/i2c-1" ]; then
-			ln -s "/dev/i2c-0" "/dev/i2c-1"
+			if [ -e "/dev/i2c-0" ]; then
+			    #Only create if /dev/i2c-0 exists....
+				ln -s "/dev/i2c-0" "/dev/i2c-1"
+			fi
 		fi
 		gpio_chip_device="/dev/gpiochip0"
 		rbpi_version="x86_64 (Not a RPi!)"
