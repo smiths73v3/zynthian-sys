@@ -69,7 +69,7 @@ apt-get -q -y install lsb-release
 
 echogreen "Loading Zynthian Environment Variables"
 source "zynthian_envars_extended.sh"
-source "zynthian_envvars.sh"
+source "zynthian_envars.sh"
 
 #------------------------------------------------
 # Set default config
