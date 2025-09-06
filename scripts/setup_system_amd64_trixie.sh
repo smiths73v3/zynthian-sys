@@ -248,7 +248,7 @@ apt-get -q -y --no-install-recommends install libx11-dev libx11-xcb-dev libxcb-u
  libasound2-dev dbus-x11 libffi-dev \
  fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
  libglibmm-2.4-dev libeigen3-dev libsamplerate-dev libarmadillo-dev libreadline-dev ttf-bitstream-vera \
- lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev \
+ libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev \
  libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
  libfreetype6-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module '^libxcb.*-dev' \
  libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
@@ -257,6 +257,9 @@ apt-get -q -y --no-install-recommends install libx11-dev libx11-xcb-dev libxcb-u
  libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
  libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
  libclthreads-dev libclxclient-dev 
+
+#Debian trixie removed these lv2-c++-tools, these were recommended in place.
+apt-get -q -y --no-install-recommends lvtk-tools lvtk-static
 
 apt_list 8
 
