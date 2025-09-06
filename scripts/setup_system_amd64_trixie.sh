@@ -158,7 +158,8 @@ apt_list 2
 #-#lsb-release
 #firmware-ralink 
 echogreen "apt number 1- Base System"
-apt-get -q -y install avahi-daemon usbutils udisks2 udevil exfatprogs lsb-release cpufrequtils
+apt-get -q -y install avahi-daemon usbutils udisks2 udevil exfatprogs lsb-release 
+#- Gone in Debian 13 # cpufrequtils
 
 echogreen "apt number 2- Xdisplay stuff"
 apt-get -q -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri \
