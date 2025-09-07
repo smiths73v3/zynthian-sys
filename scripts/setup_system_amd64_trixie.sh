@@ -503,7 +503,7 @@ systemctl disable dnsmasq
 #systemctl disable dhcpcd
 systemctl disable apt-daily.timer
 systemctl disable ModemManager
-systemctl disable glamor-test.service
+#systemctl disable glamor-test.service
 systemctl enable avahi-daemon
 systemctl enable devmon@root
 #systemctl disable wpa_supplicant
