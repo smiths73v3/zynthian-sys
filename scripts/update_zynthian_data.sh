@@ -57,8 +57,10 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/IRs" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/IRs"
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Neural Models"
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Tuning"
-	mv $ZYNTHIAN_MY_DATA_DIR/files/mod-ui/* $ZYNTHIAN_MY_DATA_DIR/files/IRs
-	rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/mod-ui"
+	if [ -d "$ZYNTHIAN_MY_DATA_DIR/files/mod-ui" ]; then
+		mv $ZYNTHIAN_MY_DATA_DIR/files/mod-ui/* $ZYNTHIAN_MY_DATA_DIR/files/IRs
+		rm -rf "$ZYNTHIAN_MY_DATA_DIR/files/mod-ui"
+	fi
 fi
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Samples" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Samples"
@@ -108,6 +110,7 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/presets" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/presets"
 fi
 # Update presets from zynthian-data repository
+mkdir -p /usr/share/zynaddsubfx/banks
 cp -nr $ZYNTHIAN_DATA_DIR/presets/zynaddsubfx/banks/* /usr/share/zynaddsubfx/banks
 
 # Fix/Setup MOD-UI pedalboards directory: create dirs & symlinks, copy pedalboards ...
@@ -148,7 +151,9 @@ fi
 if [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/dexed.lv2" ]; then
 	sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_PLUGINS_DIR/lv2/dexed.lv2/*.ttl
 fi
-sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_MY_DATA_DIR/presets/lv2/*/*.ttl
+if [ -d "$ZYNTHIAN_MY_DATA_DIR/presets/lv2" ]; then
+	sed -i -- 's/a pset\:bank/a pset\:Bank/g' $ZYNTHIAN_MY_DATA_DIR/presets/lv2/*/*.ttl
+fi
 
 # Link FluidPlug SF2s for using normally with FluidSynth
 cd $ZYNTHIAN_PLUGINS_DIR/lv2
@@ -162,6 +167,7 @@ for d in AirFont320* AVL_Drumkits_Perc* Black_Pearl* Fluid* Red_Zeppelin*; do
 done
 
 # Copy PD binary libraries
+mkdir -p /usr/local/lib/pd-externals
 cp -a $ZYNTHIAN_DATA_DIR/puredata/pd-externals-arm64/* /usr/local/lib/pd-externals
 
 # Copy custom TTL files
