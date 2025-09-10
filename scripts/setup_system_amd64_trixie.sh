@@ -433,11 +433,13 @@ pip3 install tkinterweb
 # System Adjustments
 #------------------------------------------------
 
-# Use tmpfs for tmp & logs
-echo "" >> /etc/fstab
-#-#echo "tmpfs  /tmp  tmpfs  defaults,noatime,nosuid,nodev,size=100M   0  0" >> /etc/fstab
-echo "tmpfs  /var/tmp  tmpfs  defaults,noatime,nosuid,nodev,size=200M   0  0" >> /etc/fstab
-#-#echo "tmpfs  /var/log  tmpfs  defaults,noatime,nosuid,nodev,noexec,size=50M  0  0" >> /etc/fstab
+# Use tmpfs for tmp & logs (if it has not already been done)
+if ! grep -q 'tmpfs' /etc/fstab; then
+	echo "" >> /etc/fstab
+	#-#echo "tmpfs  /tmp  tmpfs  defaults,noatime,nosuid,nodev,size=100M   0  0" >> /etc/fstab
+	echo "tmpfs  /var/tmp  tmpfs  defaults,noatime,nosuid,nodev,size=200M   0  0" >> /etc/fstab
+	#-#echo "tmpfs  /var/log  tmpfs  defaults,noatime,nosuid,nodev,noexec,size=50M  0  0" >> /etc/fstab
+fi
 
 # Fix timeout in network initialization
 if [ ! -d "/etc/systemd/system/networking.service.d" ]; then
