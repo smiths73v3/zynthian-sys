@@ -16,4 +16,5 @@
 
 #Dietpi has a pyliblo package, so install that from apt, and get both the library and the python bindings
 #-# #- apt-get -y install python3-pyliblo libpyliblo-dev
-apt-get -y install pyliblo-utils
+apt-get -y install python3-liblo pyliblo-utils python-liblo-docs
+

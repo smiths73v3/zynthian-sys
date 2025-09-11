@@ -249,7 +249,7 @@ apt_list 7
 # AV Libraries => WARNING It should be reviewed on every new debian version!!
 apt-get -q -y --no-install-recommends install libx11-dev libx11-xcb-dev libxcb-util-dev libxkbcommon-dev \
  libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-headers libpango1.0-dev \
- libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
+ libncurses5-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
  libasound2-dev dbus-x11 libffi-dev \
  fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
  libglibmm-2.4-dev libeigen3-dev libsamplerate-dev libarmadillo-dev libreadline-dev ttf-bitstream-vera \
@@ -262,6 +262,8 @@ apt-get -q -y --no-install-recommends install libx11-dev libx11-xcb-dev libxcb-u
  libsdl2-dev libibus-1.0-dev gir1.2-ibus-1.0 libdecor-0-dev libflac-dev libgbm-dev libibus-1.0-5 \
  libsystemd-dev libudev-dev libxss-dev libxt-dev libxv-dev libxxf86vm-dev libglu-dev libftgl-dev libical-dev \
  libclthreads-dev libclxclient-dev 
+
+ apt-get -q -y --no-install-recommends install liblo-dev liblo-static liblo-tools
 
 #- removed in Debian 13, now what? # libganv-dev
 #- Here is some sort of debian git repo for ganv https://salsa.debian.org/multimedia-team/ganv
