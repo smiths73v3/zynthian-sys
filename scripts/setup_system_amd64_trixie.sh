@@ -681,7 +681,9 @@ $ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
 $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 
 # Install SooperLooper backend
-apt-get -q -y install sooperlooper
+#-#apt-get -q -y install sooperlooper
+#FIXME right now this is only in forky. Can I download a deb file and install it?
+#bypass for now, I was not using it anyway
 
 # Install AIDA-X neural network loader
 $ZYNTHIAN_RECIPE_DIR/install_aidax.sh
@@ -712,14 +714,15 @@ mkdir_p /root/Pd/externals
 
 # Install MOD-HOST
 # Requires libjackd-jackd2-1.9.19 (JackTickDouble)
-export MOD_HOST_GITSHA="0d1cb5484f5432cdf7fa297e0bfcc353d8a47e6b"
-$ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
+#-# FIXME: was not using, I'll go back for this later
+#-#export MOD_HOST_GITSHA="0d1cb5484f5432cdf7fa297e0bfcc353d8a47e6b"
+#-#$ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
  
 # Install browsepy => Now it's installed with mod-ui
 # $ZYNTHIAN_RECIPE_DIR/install_mod-browsepy.sh
 
 #Install MOD-UI
-$ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
+#-# $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
 
 #Install MOD-SDK
 #$ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
