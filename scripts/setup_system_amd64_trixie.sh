@@ -552,9 +552,10 @@ $ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
 $ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
 
 # Install the LV2 C++ Tool Kit
-$ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
+#$ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
 # => lvtk-1 failed
 # TODO FAILED=> ninja: build stopped: subcommand failed.
+#### LVTK-1 is no longer available in Debian 13, so we skip it for now
 
 # Install LV2 Jalv Plugin Host
 $ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
