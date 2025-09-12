@@ -642,8 +642,9 @@ apt-mark hold zynaddsubfx-lv2
 apt-get -q -y install libsndfile1-dev libinstpatch-dev
 apt-get -q -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
 # Stop & disable systemd fluidsynth service
-systemctl stop --user fluidsynth.service
-systemctl mask --user fluidsynth.service
+#-# They were throwind errors, may not be services anymore
+#-#systemctl stop --user fluidsynth.service
+#-#systemctl mask --user fluidsynth.service
 # Create SF2 soft links
 ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
