@@ -672,7 +672,7 @@ $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 # Setup user config directories
 cd $ZYNTHIAN_CONFIG_DIR
 mkdir_p setbfree
-rm -f ./setbfree/zynthian.cfg
+rm -f ./setbfree/default.cfg
 ln -s /usr/local/share/setBfree/cfg/default.cfg ./setbfree
 cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/zynthian.cfg
 
