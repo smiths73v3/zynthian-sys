@@ -645,7 +645,9 @@ apt-get -q -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soun
 #-# They were throwind errors, may not be services anymore
 #-#systemctl stop --user fluidsynth.service
 #-#systemctl mask --user fluidsynth.service
-# Create SF2 soft links
+# Create SF2 soft links first by deleteing any existing sf2 dir
+rm -rf $ZYNTHIAN_DATA_DIR/soundfonts/sf2
+mkdir_p $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
 # Install Squishbox SF2 soundfonts
@@ -670,6 +672,7 @@ $ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 # Setup user config directories
 cd $ZYNTHIAN_CONFIG_DIR
 mkdir_p setbfree
+rm -f ./setbfree/zynthian.cfg
 ln -s /usr/local/share/setBfree/cfg/default.cfg ./setbfree
 cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/zynthian.cfg
 
