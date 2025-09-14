@@ -144,7 +144,6 @@ $ZYNTHIAN_RECIPE_DIR/install_ratatouille.sh
 #-#$ZYNTHIAN_RECIPE_DIR/install_ripplerx_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_ripplerx.sh
 #-#$ZYNTHIAN_RECIPE_DIR/install_TAL-U-NO-LX-V2_prebuilt.sh
-$ZYNTHIAN_RECIPE_DIR/install_TAL-U-NO-LX-V2_prebuilt.sh
 #-#$ZYNTHIAN_RECIPE_DIR/install_surge_xt_prebuilt.sh
 $ZYNTHIAN_RECIPE_DIR/install_surge_xt.sh
 mkdir "/root/.Surge XT"
