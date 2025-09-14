@@ -20,17 +20,18 @@ unzip NUC.zip
 
 ## \-\~\=\[Full Zynthian Install Happens\]\=\~\-
 
-Initial Zynthian GUI appears.
+On my vitrual machine, with 4 cores, this took 2+ Hours to complete.
+There should be consistent progress show on thee terminal screen.
+There will be multiple reboots.
 
-Go to admin menu
+## Finally the Initial Zynthian GUI appears.
 
-Select touch screen Navigation
+Onscreen touch should work, and/or touchpad.
 
-Select **V5 Left** or **V5 Right** to get full ui w/buttons
+If touchpad does not move the cursor, then it is in "touchscreen mode"
 
-### Allow UI to reboot
+In this case, imagine the touchpad areas overlaid on the screen.
 
-Long press **'i'** to bring up Admin menu if you misconfigure.
+Top left corner is "admin" menu. 
 
-Select admin menu
-
+Long press **'i'** to bring up Admin menu, and arrows to navigate.
