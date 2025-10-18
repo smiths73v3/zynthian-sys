@@ -502,7 +502,10 @@ $ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py
 # Configure systemd services
 systemctl daemon-reload
 #-#systemctl disable raspi-config
-systemctl disable cron
+#-#systemctl disable cron
+systemctl disable anacron.timer
+system stop anacron.timer
+systemctl disable anacron
 systemctl disable dnsmasq
 #systemctl disable dhcpcd
 systemctl disable apt-daily.timer
