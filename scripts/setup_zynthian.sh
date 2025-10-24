@@ -28,8 +28,30 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # 
 #******************************************************************************
-
 cd
+
+set -e #exit on error, so get it right!!!!!
+
+set -x #enable command tracing
+LOG_FILE="./setup_zynthian.log"
+
+echogreen() {
+	echo -e "\e[32m" $1 "\e[0m"
+}
+
+echogreen "Starting Zynthian Setup Script"
+
+# Redirect all stdout and stderr to the log file appending for when we reboot etc.
+exec > >(tee -a "${LOG_FILE}") 2>&1
+
+if uname -m | grep -qi x86_64; then
+	echo "x86_64 detected."
+	echo "force wiggle to bypass rpi-config"
+	echo 'date' > ~/.wiggled
+	export IS_X86_64=true
+else
+	export IS_X86_64=false
+fi
 
 if [ "$1" = "wiggle" ] || [ ! -f ~/.wiggled ]; then
 	echo `date` >  ~/.wiggled
@@ -38,12 +60,21 @@ if [ "$1" = "wiggle" ] || [ ! -f ~/.wiggled ]; then
 else
 	if [ ! -d "zynthian-sys" ]; then
 		apt-get update
-		apt-get -y install apt-utils git parted screen
-		git clone -b oram https://github.com/zynthian/zynthian-sys.git
+		apt-get -q -y install apt-utils git parted screen
+		git clone -b NUC https://github.com/smiths73v3/zynthian-sys.git
+	else
+		cd zynthian-sys
+		git pull
+		cd
 	fi
 	cd zynthian-sys/scripts
-	./setup_system_raspioslite_64bit_bookworm.sh
+	if [ "$IS_X86_64" = "true" ]; then
+		#./setup_system_nuc_dietpi_64bit_bookworm.sh
+		./setup_system_amd64_trixie.sh
+	else
+		./setup_system_raspiolite_64bit_bookworm.sh
+	fi
 	cd
-	rm -rf zynthian-sys
+	#-# don't remove the zynthian-sys from here for now, keep it in case I tweaked something for the install debug
+	#-# rm -rf zynthian-sys
 fi
-

@@ -22,6 +22,11 @@ if [ ${MACHINE_HW_NAME} = "armv7l" ]; then
 	armdir="arm-32bit"
 elif [ ${MACHINE_HW_NAME} = "aarch64" ]; then
 	armdir="arm-64bit"
+elif [ ${MACHINE_HW_NAME} = "x86_64" ]; then
+	armdir="x86-64bit"
+else
+	echo "ERROR: Unsupported architecture: ${MACHINE_HW_NAME}"
+	exit 1
 fi
 
 # Uncompress new binary package and delete unused files

@@ -123,24 +123,27 @@ def autodetect_config():
 	return config_name
 
 # --------------------------------------------------------------------
-	
-# Get list of i2c chips
-i2c_chips = get_i2c_chips()
-print("Detected I2C Chips: {}".format(i2c_chips))
-
-# Select boards to test
-if board_names:
-	board_names = [s.strip() for s in board_names.split(',')]
-elif kit_name:
-	board_names = []
-	for bname in hardware_config.keys():
-		if bname.startswith(kit_name):
-			board_names.append(bname)
-
-# Check chip presence for selected boards
-if len(board_names) > 0:
-	check_boards(board_names)
+#Check x86_64 for byassing rpi-config
+if os.environ.get('IS_X86_64') == 'true':
+	print("Detected x86_64 architecture. Nothing to detect.")	
 else:
-	print("ERROR: Nothing to detect!")
+	# Get list of i2c chips
+	i2c_chips = get_i2c_chips()
+	print("Detected I2C Chips: {}".format(i2c_chips))
+
+	# Select boards to test
+	if board_names:
+		board_names = [s.strip() for s in board_names.split(',')]
+	elif kit_name:
+		board_names = []
+		for bname in hardware_config.keys():
+			if bname.startswith(kit_name):
+				board_names.append(bname)
+
+	# Check chip presence for selected boards
+	if len(board_names) > 0:
+		check_boards(board_names)
+	else:
+		print("ERROR: Nothing to detect!")
 
 # --------------------------------------------------------------------

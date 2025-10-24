@@ -3,17 +3,24 @@
 cd $ZYNTHIAN_PLUGINS_SRC_DIR
 
 if [ -d "gearmulator" ]; then
-    rm -rf "gearmulator"
+    #-#rm -rf "gearmulator"
+    #-#git clone --recurse-submodules https://github.com/dsp56300/gearmulator.git
+    continue
+else
+    git clone --recurse-submodules https://github.com/smiths73v3/gearmulator.git
 fi
 
-git clone --recurse-submodules https://github.com/dsp56300/gearmulator.git
 cd gearmulator
 sed -i 's/http\:\/\/theusualsuspects\.lv2\./http\:\/\/theusualsuspects\.lv2\//g' ./source/juce.cmake
 systemctl stop zynthian
 systemctl stop zynthian-webconf
+#-# Pull latest changes, and update submodules
+git pull
+git submodule update --init --recursive
 umount /tmp
-cmake --preset zynthian
-cmake --build --preset zynthian --target install
+cmake --fresh
+cmake --preset zynthian_x86_64
+cmake --build --preset zynthian_x86_64 --target install
 rm -rf /tmp/*
 mount /tmp
 systemctl start zynthian
@@ -36,4 +43,4 @@ regenerate_lv2_presets.sh http://theusualsuspects.lv2/OsTIrus
 #regenerate_lv2_presets.sh http://theusualsuspects.lv2/Xenia
 
 cd ..
-rm -rf "gearmulator"
+#-#rm -rf "gearmulator"

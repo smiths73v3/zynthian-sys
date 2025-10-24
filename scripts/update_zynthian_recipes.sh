@@ -448,8 +448,8 @@ fi
 # Clean apt packages
 # -----------------------------------------------------------------------------
 
-apt -y autoremove
-apt -y autoclean
+#-#apt -y autoremove
+#-#apt -y autoclean
 
 # -----------------------------------------------------------------------------
 # Bizarre stuff that shouldn't be needed but sometimes is

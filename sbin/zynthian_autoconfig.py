@@ -53,6 +53,9 @@ hardware_config = {
 
 def get_i2c_chips():
 	res = []
+	if not os.path.exists("/dev/i2c-1"):
+		print("ERROR: /dev/i2c-1 not found. I2C bus is not available.")
+		return res
 	out = check_output("i2cdetect -y 1", shell=True).decode().split("\n")
 	if len(out) > 3:
 		for i in range(0, 8):
@@ -115,14 +118,18 @@ def autodetect_config():
 	return config_name
 
 # --------------------------------------------------------------------
+#Check x86_64 for byassing rpi-config
+if os.environ.get('IS_X86_64') == 'true':
+	print("Detected x86_64 architecture. Bypassing rpi-config.")
+	config_name = "x86_64"	
+else:
+	# Get list of i2c chips
+	i2c_chips = get_i2c_chips()
+	print(f"Detected I2C Chips: {i2c_chips}")
 
-# Get list of i2c chips
-i2c_chips = get_i2c_chips()
-print(f"Detected I2C Chips: {i2c_chips}")
-
-# Detect kit version
-config_name = autodetect_config()
-print(f"Detected {config_name} kit!")
+	# Detect kit version
+	config_name = autodetect_config()
+	print(f"Detected {config_name} kit!")
 
 # Configure Zynthian
 if config_name:

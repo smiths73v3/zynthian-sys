@@ -19,9 +19,9 @@ if [ -f $REBOOT_FLAGFILE ]; then
 	killall generate_fb_splash.sh
 	rm -rf $ZYNTHIAN_CONFIG_DIR/img
 	# Make sure eeprom update is not truncated
-	while [[ $(pgrep -f rpi-eeprom-update) > 0 ]]; do
-		sleep 0.1
-	done
+	#-#while [[ $(pgrep -f rpi-eeprom-update) > 0 ]]; do
+	#-#	sleep 0.1
+	#-#done
 	# Reboot
 	reboot
 	exit
@@ -60,8 +60,8 @@ echo -e "Disabling first boot process ..." >> /root/first_boot.log
 systemctl disable first_boot
 
 # Resize partition & reboot
-echo -e "Resizing partition..." >> /root/first_boot.log
-raspi-config --expand-rootfs
+#-#echo -e "Resizing partition..." >> /root/first_boot.log
+#-#raspi-config --expand-rootfs
 
 # Reboot
 echo -e "Rebooting to start zynthian-ui ..." >> /root/first_boot.log
