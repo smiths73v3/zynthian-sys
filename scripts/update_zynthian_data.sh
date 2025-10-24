@@ -52,7 +52,37 @@ fi
 # Fixing some paths & locations ...
 #------------------------------------------------------------------------------
 
+# Create directories and symlinks for Hydrogen soundfonts
+if [ ! -d "$ZYNTHIAN_DATA_DIR/soundfonts/hydrogen" ]; then
+	mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/hydrogen"
+fi
+if [ ! -d "/usr/share/drmr" ]; then
+	mkdir "/usr/share/drmr"
+fi
+if [ ! -L "/usr/share/drmr/drumkits" ]; then
+	ln -s "$ZYNTHIAN_DATA_DIR/soundfonts/hydrogen" "/usr/share/drmr/drumkits"
+fi
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/soundfonts/hydrogen" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/hydrogen"
+fi
+if [ ! -d "/usr/local/share/drmr" ]; then
+	mkdir "/usr/local/share/drmr"
+fi
+if [ ! -L "/usr/local/share/drmr/drumkits" ]; then
+	ln -s "$ZYNTHIAN_MY_DATA_DIR/soundfonts/hydrogen" "/usr/local/share/drmr/drumkits"
+fi
+
+# Move VPO3 soundfonts to own bank.
+# This will break snapshots depending on these soundfonts,
+# but it's "needed" to avoid too nested SFZ files.
+if [ -d "$ZYNTHIAN_DATA_DIR/soundfonts/sfz/Other/VPO3-perf" ]; then
+	mv "$ZYNTHIAN_DATA_DIR/soundfonts/sfz/Other/VPO3-perf" "$ZYNTHIAN_DATA_DIR/soundfonts/sfz/"
+fi
+
 # Create dir structure for UI file selector
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files"
+fi
 if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/IRs" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/IRs"
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Neural Models"
@@ -69,9 +99,29 @@ if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Samples" ]; then
 	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Samples/Loops"
 fi
 # Create audio data dir and soft-link capture as a subdir inside
-if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/audio" ]; then
-	mkdir "$ZYNTHIAN_MY_DATA_DIR/audio"
-	ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/audio/capture"
+if [ ! -d "$ZYNTHIAN_MY_DATA_DIR/files/Audio" ]; then
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Audio"
+	mkdir "$ZYNTHIAN_MY_DATA_DIR/files/Audio/Tracks"
+	ln -s "$ZYNTHIAN_MY_DATA_DIR/capture" "$ZYNTHIAN_MY_DATA_DIR/files/Audio/capture"
+fi
+# Manage old audio folder
+if [ -d "$ZYNTHIAN_MY_DATA_DIR/audio" ]; then
+	if [ -L "$ZYNTHIAN_MY_DATA_DIR/audio/capture" ]; then
+		rm -rf "$ZYNTHIAN_MY_DATA_DIR/audio/capture"
+	fi
+	mv $ZYNTHIAN_MY_DATA_DIR/audio/* "$ZYNTHIAN_MY_DATA_DIR/files/Audio"
+	rm -rf "$ZYNTHIAN_MY_DATA_DIR/audio"
+fi
+
+# Create soft links for puredata and SFZ samples
+if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/puredata" ]; then
+	ln -s $ZYNTHIAN_MY_DATA_DIR/presets/puredata $ZYNTHIAN_MY_DATA_DIR/files/Samples
+fi
+if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/sfz" ]; then
+	ln -s $ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz $ZYNTHIAN_MY_DATA_DIR/files/Samples
+fi
+if [ ! -L "$ZYNTHIAN_MY_DATA_DIR/files/Samples/hydrogen" ]; then
+	ln -s $ZYNTHIAN_MY_DATA_DIR/soundfonts/hydrogen $ZYNTHIAN_MY_DATA_DIR/files/Samples/hydrogen
 fi
 
 # Fix zynseq data directories
@@ -171,14 +221,15 @@ mkdir -p /usr/local/lib/pd-externals
 cp -a $ZYNTHIAN_DATA_DIR/puredata/pd-externals-arm64/* /usr/local/lib/pd-externals
 
 # Copy custom TTL files
-cd $ZYNTHIAN_DATA_DIR/lv2-custom
+cd "$ZYNTHIAN_DATA_DIR/lv2-custom"
 for d in */; do
+	cd "$ZYNTHIAN_DATA_DIR/lv2-custom/$d"
 	if [ -d "/usr/lib/lv2/$d" ]; then
-		cp -a $d/* /usr/lib/lv2/$d
+		cp -a * "/usr/lib/lv2/$d"
 	elif [ -d "/usr/local/lib/lv2/$d" ]; then
-		cp -a $d/* /usr/local/lib/lv2/$d
+		cp -a * "/usr/local/lib/lv2/$d"
 	elif [ -d "$ZYNTHIAN_PLUGINS_DIR/lv2/$d" ]; then
-		cp -a $d/* $ZYNTHIAN_PLUGINS_DIR/lv2/$d
+		cp -a * "$ZYNTHIAN_PLUGINS_DIR/lv2/$d"
 	fi
 done
 
