@@ -504,7 +504,7 @@ systemctl daemon-reload
 #-#systemctl disable raspi-config
 #-#systemctl disable cron
 systemctl disable anacron.timer
-system stop anacron.timer
+systemctl stop anacron.timer
 systemctl disable anacron
 systemctl disable dnsmasq
 #systemctl disable dhcpcd
