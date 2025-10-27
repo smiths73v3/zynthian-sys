@@ -526,7 +526,8 @@ systemctl enable devmon@root
 
 # Zynthian specific systemd services
 systemctl enable jack2
-systemctl enable mod-ttymidi
+#-# disable mod-ttymidi no used on amd64
+#-# systemctl enable mod-ttymidi
 systemctl enable a2jmidid
 systemctl enable zynthian
 systemctl enable zynthian-webconf
@@ -736,6 +737,7 @@ mkdir_p /root/Pd/externals
 #------------------------------------------------
 # Install Plugins
 #------------------------------------------------
+echogreen "Launching setup_plugins_x86_64.sh"
 cd "$ZYNTHIAN_SYS_DIR/scripts"
 ./setup_plugins_x86_64.sh
 
