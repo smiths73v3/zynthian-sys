@@ -634,7 +634,8 @@ $ZYNTHIAN_RECIPE_DIR/install_filebrowser.sh
 #------------------------------------------------
 
 echogreen "Build & Install Synthesis Software"
-if [ 1 ]; then
+# Default to building plugins if SKIP_PLUGINS not defined
+if [ -z "$SKIP_PLUGINS" ]; then
 echogreen "Start Builds"
 
 # Install ZynAddSubFX => from trixie repository instead of KXStudio
