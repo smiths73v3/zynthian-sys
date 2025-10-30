@@ -59,7 +59,10 @@ DEBIAN_FRONTEND=noninteractive
 #------------------------------------------------------------------------------
 apt-get update
 apt_list 1
-apt-get -q -y install apt-utils git parted screen unzip zip
+apt-get -q -y install apt-utils git parted screen unzip zip openssh-server
+# => Allow root ssh login (early so we can ssh in if needed)
+echo -e "\nPermitRootLogin yes" >> /etc/ssh/sshd_config
+systemctl restart sshd
 
 #------------------------------------------------------------------------------
 # Load Environment Variables
@@ -98,6 +101,7 @@ source "zynthian_envars.sh"
 
 # Update System
 apt-get -q -y update --allow-releaseinfo-change
+#- Probably don't want a full upgrade? may break packages...
 #-20250905-# apt-get -q -y full-upgrade
 
 # Install required dependencies if needed
@@ -143,6 +147,8 @@ sudo dpkg -i kxstudio-repos_11.2.0_all.deb
 
 apt-get -q -y update
 #-20250905-# apt-get -q -y full-upgrade
+#-# Remove apparmor and other base packages before we start on the amd64 install
+apt-get remove -q -y --purge apparmor apparmor-utils
 apt-get -q -y autoremove
 
 #------------------------------------------------
@@ -475,9 +481,6 @@ echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian
 #disable dietpi bashrc splash and super config
 #-# #Debian# mv /etc/bashrc.d/dietpi.bash /etc/bashrc.d/dietpi.disabled
-
-# => Allow root ssh login
-echo -e "\nPermitRootLogin yes" >> /etc/ssh/sshd_config
 
 # ZynthianOS version
 export ZYNTHIANOS_VERSION="2409"
