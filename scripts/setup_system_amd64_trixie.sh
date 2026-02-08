@@ -343,6 +343,9 @@ if [ -d "${ZYNTHIAN_SYS_DIR}/.git" ]; then
 else
 	git clone $(has_branch ${ZYNTHIAN_SYS_BRANCH}) "${ZYNTHIAN_SYS_REPO}"
 fi
+#-# For now, copy a default keybinding file. Ideally condition this on the hardware
+#-# and add to the zyngui library keybinging default 
+cp "$ZYNTHIAN_SYS_DIR/config/keybinding.json" "$ZYNTHIAN_CONFIG_DIR/keybinding.json"
 
 # Config "git pull" strategy globally
 # QUESTION: is this needed at all?
